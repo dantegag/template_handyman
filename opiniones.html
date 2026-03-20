@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opiniones – ReparMax</title>
+    <title></title>
+    <meta name="description" content="">
+    <script src="config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <script>
+        document.title = CONFIG.meta.title.split('–')[0] + '– Opiniones';
+        document.querySelector('meta[name="description"]').content = CONFIG.meta.description;
         tailwind.config = {
             theme: { extend: {
-                colors: { bg: '#0c0c0c', bg2: '#141414', accent: '#f5a623', accent2: '#e8891b', textMain: '#f0ede8', muted: '#777', borderC: 'rgba(255,255,255,0.07)' },
+                colors: { bg: CONFIG.colors.bg, bg2: CONFIG.colors.bg2, bg3: CONFIG.colors.bg3, accent: CONFIG.colors.accent, accent2: CONFIG.colors.accent2, textMain: CONFIG.colors.textMain, muted: CONFIG.colors.muted, borderC: 'rgba(255,255,255,0.07)' },
                 fontFamily: { sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] }
             }}
         }
@@ -27,13 +31,8 @@
 <!-- NAVBAR -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-borderC">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html" class="text-accent font-extrabold text-xl tracking-tight uppercase">Reparmax</a>
-        <div class="hidden md:flex items-center gap-8 text-sm text-muted">
-            <a href="servicios.html" class="hover:text-textMain transition">Servicios</a>
-            <a href="proceso.html" class="hover:text-textMain transition">Proceso</a>
-            <a href="opiniones.html" class="text-textMain font-semibold transition">Opiniones</a>
-            <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">Consultar</a>
-        </div>
+        <a href="index.html" class="text-accent font-extrabold text-xl tracking-tight uppercase" id="navLogo"></a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-muted" id="navLinks"></div>
         <button class="md:hidden text-textMain" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -43,13 +42,7 @@
     <button class="absolute top-5 right-5 text-textMain" onclick="document.getElementById('mobileMenu').classList.remove('open')">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
-    <div class="flex flex-col gap-6 text-sm">
-        <a href="index.html" class="text-muted hover:text-textMain transition">Inicio</a>
-        <a href="servicios.html" class="text-muted hover:text-textMain transition">Servicios</a>
-        <a href="proceso.html" class="text-muted hover:text-textMain transition">Proceso</a>
-        <a href="opiniones.html" class="text-accent font-semibold">Opiniones</a>
-        <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center">Consultar</a>
-    </div>
+    <div class="flex flex-col gap-6 text-sm" id="mobileNavLinks"></div>
 </div>
 
 <!-- HERO -->
@@ -59,159 +52,23 @@
             Testimonios Reales
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
-            <span class="text-textMain" data-cms="opiniones.hero.heading1">LO QUE DICEN </span><span class="text-accent" data-cms="opiniones.hero.heading2">NUESTROS CLIENTES</span>
+            <span class="text-textMain">LO QUE DICEN </span><span class="text-accent">NUESTROS CLIENTES</span>
         </h1>
-        <p class="text-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed" data-cms="opiniones.hero.desc">
-            Más de 500 trabajos realizados con clientes satisfechos en La Plata y Gran La Plata. Estas son sus experiencias reales.
-        </p>
+        <p class="text-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed" id="heroDesc"></p>
     </div>
 </section>
 
 <!-- STATS -->
 <section class="pb-16 px-6">
     <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-bg2 border border-borderC rounded-2xl p-6 text-center">
-                <div class="text-3xl font-bold text-accent mb-1" data-cms="opiniones.stat1">4.9/5</div>
-                <div class="text-muted text-xs" data-cms="opiniones.stat1label">Calificación Promedio</div>
-            </div>
-            <div class="bg-bg2 border border-borderC rounded-2xl p-6 text-center">
-                <div class="text-3xl font-bold text-accent mb-1" data-cms="opiniones.stat2">+500</div>
-                <div class="text-muted text-xs" data-cms="opiniones.stat2label">Trabajos Completados</div>
-            </div>
-            <div class="bg-bg2 border border-borderC rounded-2xl p-6 text-center">
-                <div class="text-3xl font-bold text-accent mb-1" data-cms="opiniones.stat3">98%</div>
-                <div class="text-muted text-xs" data-cms="opiniones.stat3label">Clientes Satisfechos</div>
-            </div>
-            <div class="bg-bg2 border border-borderC rounded-2xl p-6 text-center">
-                <div class="text-3xl font-bold text-accent mb-1" data-cms="opiniones.stat4">85%</div>
-                <div class="text-muted text-xs" data-cms="opiniones.stat4label">Nos Recomiendan</div>
-            </div>
-        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="opinionStats"></div>
     </div>
 </section>
 
 <!-- TESTIMONIOS -->
 <section class="py-16 px-6">
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Testimonio 1 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t1.text">"Hicieron el cielorraso de durlock en tiempo récord y con un terminado impecable. Súper recomendables, ya los contraté para la cocina."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 font-bold text-sm">M</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t1.name">Marcela R.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t1.loc">Centro, La Plata · Durlock</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 2 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t2.text">"Renovaron toda la instalación eléctrica del local. Trabajo prolijo, sin cortes innecesarios y con certificado de garantía."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-sm">J</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t2.name">Javier C.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t2.loc">Tolosa, La Plata · Electricidad</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 3 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t3.text">"Pintaron todo el departamento en dos días. Puntualísimos, buen precio y un resultado que superó todas mis expectativas."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 font-bold text-sm">L</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t3.name">Laura P.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t3.loc">Gonnet, Gran La Plata · Pintura</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 4 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t4.text">"Nos arreglaron una pérdida de agua que otros plomeros no pudieron solucionar. Vinieron rápido, encontraron el problema y lo resolvieron en el día."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm">R</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t4.name">Roberto M.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t4.loc">City Bell · Plomería</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 5 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t5.text">"Reformaron el baño completo: plomería, revestimientos, mueble y grifería. Coordinaron todo ellos y quedó espectacular. Muy profesionales."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 font-bold text-sm">A</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t5.name">Ana S.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t5.loc">La Plata Centro · Reformas</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 6 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t6.text">"Hicieron todas las puertas de madera del departamento nuevo. Ajuste perfecto, pintadas y con herrajes de calidad. Un lujo trabajar con gente seria."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold text-sm">D</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t6.name">Diego F.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t6.loc">Ensenada · Carpintería</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 7 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t7.text">"Excelente servicio de principio a fin. Presupuesto claro, materiales de calidad y cumplieron con los tiempos. Los voy a seguir llamando."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold text-sm">C</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t7.name">Carolina V.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t7.loc">Los Hornos · Electricidad</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 8 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t8.text">"Impermeabilizaron toda la terraza y pintaron el frente. Ya pasaron dos temporadas de lluvia y cero filtraciones. Garantía real."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 font-bold text-sm">P</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t8.name">Pablo G.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t8.loc">Villa Elisa · Pintura</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonio 9 -->
-            <div class="bg-bg2 border border-borderC rounded-2xl p-7">
-                <div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>
-                <p class="text-muted text-sm leading-relaxed mb-6" data-cms="opiniones.t9.text">"Armaron un cielorraso con iluminación indirecta que quedó increíble. Muy detallistas con el diseño y la terminación. Recomendado 100%."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-sm">V</div>
-                    <div>
-                        <div class="text-textMain font-semibold text-sm" data-cms="opiniones.t9.name">Valeria T.</div>
-                        <div class="text-muted text-xs" data-cms="opiniones.t9.loc">Berisso · Durlock</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonialsGrid"></div>
     </div>
 </section>
 
@@ -221,7 +78,7 @@
         <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">
             <span class="text-textMain">SUMATE A NUESTROS </span><span class="text-accent">CLIENTES SATISFECHOS</span>
         </h2>
-        <p class="text-muted text-sm mb-10">Consultá sin compromiso y comprobá por qué nos recomiendan.</p>
+        <p class="text-muted text-sm mb-10" id="ctaText"></p>
         <a href="contacto.html" class="inline-block bg-accent hover:bg-accent2 text-bg font-semibold px-8 py-3.5 rounded-lg transition text-sm">Pedir Presupuesto Gratis</a>
     </div>
 </section>
@@ -229,29 +86,81 @@
 <!-- FOOTER -->
 <footer class="py-8 px-6 border-t border-borderC">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-            <span class="text-accent font-extrabold text-sm uppercase">Reparmax</span>
-            <span class="text-muted text-xs ml-3">Reparaciones Integrales · La Plata y Gran La Plata</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="admin.html" class="text-muted hover:text-accent text-xs transition">Admin</a>
-            <p class="text-muted text-xs">© 2025 ReparMax. Todos los derechos reservados.</p>
-        </div>
+        <div id="footerLeft"></div>
+        <div class="flex items-center gap-4" id="footerRight"></div>
     </div>
 </footer>
 
 <script>
-(function() {
-    const data = JSON.parse(localStorage.getItem('reparmax_cms') || '{}');
-    document.querySelectorAll('[data-cms]').forEach(el => {
-        const key = el.getAttribute('data-cms');
-        if (data[key] !== undefined && data[key] !== '') el.textContent = data[key];
-    });
-    document.querySelectorAll('[data-cms-img]').forEach(el => {
-        const key = el.getAttribute('data-cms-img');
-        if (data[key] !== undefined && data[key] !== '') el.src = data[key];
-    });
-})();
+function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+function renderAll() {
+    document.body.style.background = CONFIG.colors.bg;
+    document.body.style.color = CONFIG.colors.textMain;
+
+    // Nav (highlight "Opiniones")
+    document.getElementById('navLogo').textContent = CONFIG.businessName;
+    document.getElementById('navLinks').innerHTML =
+        CONFIG.nav.links.map(function(l) {
+            return '<a href="' + l.page + '" class="' + (l.page === 'opiniones.html' ? 'text-textMain font-semibold' : 'hover:text-textMain') + ' transition">' + esc(l.label) + '</a>';
+        }).join('') +
+        '<a href="' + CONFIG.nav.ctaPage + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">' + esc(CONFIG.nav.ctaLabel) + '</a>';
+    document.getElementById('mobileNavLinks').innerHTML =
+        '<a href="index.html" class="text-muted hover:text-textMain transition" onclick="closeMobile()">Inicio</a>' +
+        CONFIG.nav.links.map(function(l) {
+            return '<a href="' + l.page + '" class="' + (l.page === 'opiniones.html' ? 'text-accent font-semibold' : 'text-muted hover:text-textMain transition') + '" onclick="closeMobile()">' + esc(l.label) + '</a>';
+        }).join('') +
+        '<a href="' + CONFIG.nav.ctaPage + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center" onclick="closeMobile()">' + esc(CONFIG.nav.ctaLabel) + '</a>';
+
+    // Hero desc
+    document.getElementById('heroDesc').textContent = 'Más de 500 trabajos realizados con clientes satisfechos en ' + CONFIG.location + '. Estas son sus experiencias reales.';
+
+    // Opinion stats from CONFIG.opinionStats
+    document.getElementById('opinionStats').innerHTML = CONFIG.opinionStats.map(function(s) {
+        return '<div class="bg-bg2 border border-borderC rounded-2xl p-6 text-center">' +
+            '<div class="text-3xl font-bold text-accent mb-1">' + esc(s.value) + '</div>' +
+            '<div class="text-muted text-xs">' + esc(s.label) + '</div>' +
+            '</div>';
+    }).join('');
+
+    // Testimonials - static 3-column grid (NOT scrolling like index.html)
+    // Each card shows: stars, quote text, avatar circle, name, location + service tag
+    var d = getData();
+    document.getElementById('testimonialsGrid').innerHTML = d.testimonials.map(function(t) {
+        var locText = t.loc + (t.service ? ' · ' + t.service : '');
+        return '<div class="bg-bg2 border border-borderC rounded-2xl p-7">' +
+            '<div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>' +
+            '<p class="text-muted text-sm leading-relaxed mb-6">"' + esc(t.text) + '"</p>' +
+            '<div class="flex items-center gap-3">' +
+            '<div class="w-10 h-10 rounded-full bg-' + esc(t.color) + '-500/20 flex items-center justify-center text-' + esc(t.color) + '-400 font-bold text-sm">' + esc(t.initial) + '</div>' +
+            '<div><div class="text-textMain font-semibold text-sm">' + esc(t.name) + '</div>' +
+            '<div class="text-muted text-xs">' + esc(locText) + '</div></div>' +
+            '</div></div>';
+    }).join('');
+
+    // CTA
+    document.getElementById('ctaText').textContent = CONFIG.ctaSubtitle;
+
+    // Footer
+    document.getElementById('footerLeft').innerHTML =
+        '<span class="text-accent font-extrabold text-sm uppercase">' + esc(CONFIG.businessName) + '</span>' +
+        '<span class="text-muted text-xs ml-3">' + esc(CONFIG.tagline) + ' · ' + esc(CONFIG.location) + '</span>';
+    document.getElementById('footerRight').innerHTML =
+        '<a href="admin.html" class="text-muted hover:text-accent text-xs transition">Admin</a>' +
+        '<p class="text-muted text-xs">© ' + new Date().getFullYear() + ' ' + esc(CONFIG.businessName) + '. Todos los derechos reservados.</p>';
+}
+
+function getData() {
+    var key = CONFIG.slug + '_cms';
+    try {
+        var stored = JSON.parse(localStorage.getItem(key) || 'null');
+        if (stored && stored.testimonials) return stored;
+    } catch(e) {}
+    return JSON.parse(JSON.stringify(CONFIG));
+}
+
+renderAll();
 </script>
 </body>
 </html>
