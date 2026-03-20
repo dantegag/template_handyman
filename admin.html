@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin – ReparMax</title>
+    <script src="config.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: { extend: {
-                colors: { bg: '#0c0c0c', bg2: '#141414', bg3: '#1a1a1a', accent: '#f5a623', accent2: '#e8891b', textMain: '#f0ede8', muted: '#777', borderC: 'rgba(255,255,255,0.07)' },
+                colors: { bg: CONFIG.colors.bg, bg2: CONFIG.colors.bg2, bg3: CONFIG.colors.bg3, accent: CONFIG.colors.accent, accent2: CONFIG.colors.accent2, textMain: CONFIG.colors.textMain, muted: CONFIG.colors.muted, borderC: 'rgba(255,255,255,0.07)' },
                 fontFamily: { sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] }
             }}
         }
     </script>
+    <script>document.title = 'Admin – ' + CONFIG.businessName;</script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; }
@@ -51,7 +53,7 @@
 <!-- LOGIN -->
 <div id="loginScreen" class="login-screen">
     <div class="bg-bg2 border border-borderC rounded-2xl p-10 max-w-sm w-full mx-4 text-center">
-        <div class="text-accent font-extrabold text-2xl uppercase mb-2">ReparMax</div>
+        <div class="text-accent font-extrabold text-2xl uppercase mb-2" id="loginLogo">ReparMax</div>
         <p class="text-muted text-sm mb-8">Panel de Administración</p>
         <div class="text-left mb-4">
             <label class="fl">Contraseña</label>
@@ -69,7 +71,7 @@
     <div class="fixed top-0 left-0 w-full z-50 bg-bg/90 backdrop-blur-md border-b border-borderC">
         <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <a href="index.html" class="text-accent font-extrabold text-lg uppercase">ReparMax</a>
+                <a href="index.html" class="text-accent font-extrabold text-lg uppercase" id="adminLogo">ReparMax</a>
                 <span class="text-muted text-xs bg-bg2 px-3 py-1 rounded-full border border-borderC">Admin</span>
             </div>
             <div class="flex items-center gap-3">
@@ -89,10 +91,19 @@
             <button class="tab-btn" onclick="switchTab('opinions',this)">Opiniones</button>
             <button class="tab-btn" onclick="switchTab('faq',this)">FAQ</button>
             <button class="tab-btn" onclick="switchTab('contact',this)">Contacto</button>
+            <button class="tab-btn" onclick="switchTab('about',this)">Nosotros</button>
         </div>
 
         <!-- ═══ HERO / GENERAL ═══ -->
         <div id="p-hero" class="panel active">
+            <div class="card">
+                <div class="section-title">Identidad del Negocio</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="fg"><label class="fl">Nombre del negocio</label><input id="h-bname"></div>
+                    <div class="fg"><label class="fl">Eslogan</label><input id="h-tagline"></div>
+                    <div class="fg"><label class="fl">Ubicación</label><input id="h-location"></div>
+                </div>
+            </div>
             <div class="card">
                 <div class="section-title">Hero Principal</div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -182,6 +193,45 @@
                 <div class="fg"><label class="fl">Zona de cobertura</label><textarea id="c-zona"></textarea></div>
                 <div class="fg"><label class="fl">Horarios</label><input id="c-horarios"></div>
             </div>
+            <div class="card">
+                <div class="section-title">Google Maps</div>
+                <div class="fg"><label class="fl">URL de Google Maps (link para abrir)</label><input id="c-maps-url" placeholder="https://maps.google.com/?q=..."></div>
+                <div class="fg"><label class="fl">URL de Embed (iframe)</label><input id="c-maps-embed" placeholder="https://www.google.com/maps/embed?pb=..."></div>
+            </div>
+            <div class="card">
+                <div class="section-title">Redes Sociales</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="fg"><label class="fl">Instagram</label><input id="c-social-ig" placeholder="https://instagram.com/..."></div>
+                    <div class="fg"><label class="fl">Facebook</label><input id="c-social-fb" placeholder="https://facebook.com/..."></div>
+                    <div class="fg"><label class="fl">TikTok</label><input id="c-social-tt" placeholder="https://tiktok.com/@..."></div>
+                    <div class="fg"><label class="fl">YouTube</label><input id="c-social-yt" placeholder="https://youtube.com/..."></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="p-about" class="panel">
+            <div class="card">
+                <div class="section-title">Hero de Nosotros</div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="fg"><label class="fl">Título línea 1</label><input id="ab-h1"></div>
+                    <div class="fg"><label class="fl">Título línea 2 (accent)</label><input id="ab-h2"></div>
+                </div>
+                <div class="fg"><label class="fl">Descripción</label><textarea id="ab-desc"></textarea></div>
+            </div>
+            <div class="card">
+                <div class="section-title">Misión y Visión</div>
+                <div class="fg"><label class="fl">Misión</label><textarea id="ab-mission"></textarea></div>
+                <div class="fg"><label class="fl">Visión</label><textarea id="ab-vision"></textarea></div>
+            </div>
+            <div class="card">
+                <div class="section-title">Valores</div>
+                <div id="valuesFields"></div>
+                <button class="add-btn" onclick="addValue()">+ Agregar Valor</button>
+            </div>
+            <div class="card">
+                <div class="section-title">Equipo</div>
+                <div class="fg"><label class="fl">Descripción del equipo</label><textarea id="ab-team"></textarea></div>
+            </div>
         </div>
     </div>
 </div>
@@ -215,85 +265,28 @@ const COLORS = ['red','purple','orange','blue','green','yellow','pink','teal','i
 const COLOR_HEX = {red:'#ef4444',purple:'#a855f7',orange:'#f97316',blue:'#3b82f6',green:'#22c55e',yellow:'#eab308',pink:'#ec4899',teal:'#14b8a6',indigo:'#6366f1',cyan:'#06b6d4',rose:'#f43f5e',amber:'#f59e0b'};
 
 // ═══════════════════════════════════════
-// DEFAULTS (same as index.html)
-// ═══════════════════════════════════════
-const DEFAULTS = {
-    hero:{badge:"Reparaciones Profesionales · La Plata y Gran La Plata",heading1:"TODO LO QUE TU",heading2:"HOGAR NECESITA",subtitle:"Electricidad · Pintura · Madera · Durlock · Plomería",description:"Reparaciones en La Plata y Gran La Plata: profesionales especializados en cada área. Trabajo prolijo, puntualidad y garantía escrita en todos nuestros trabajos."},
-    stats:[{value:"+500",label:"Trabajos Realizados"},{value:"8+",label:"Años de Experiencia"},{value:"100%",label:"Estimación Garantizada"}],
-    serviciosSubtitle:"Profesionales especializados en cada área para darte la mejor solución, todo en un solo lugar.",
-    services:[
-        {title:"Electricidad",desc:"Instalaciones y reparaciones eléctricas en La Plata para hogar o comercio. Certificaciones y materiales de primera calidad.",icon:"bolt",tags:"Tableros, Iluminación, Enchufes, Cableado"},
-        {title:"Pintura",desc:"Pintura interior y exterior en La Plata y zona. Preparación de superficies, trazados y acabados con pinturas de alta durabilidad.",icon:"paint",tags:"Interior, Exterior, Texturado, Impermeabilizante"},
-        {title:"Madera & Carpintería",desc:"Carpinteros en La Plata: reparación y fabricación de muebles, puertas, ventanas y aberturas con terminaciones impecables.",icon:"wood",tags:"Puertas, Muebles, Pisos, Ventanas"},
-        {title:"Durlock & Drywall",desc:"Durlock y drywall en La Plata: tabiques divisorios, cielorrasos, revestimientos y estructuras de yeso con acabado perfecto.",icon:"grid",tags:"Tabiques, Cielorrasos, Nichos, Molduras"},
-        {title:"Plomería",desc:"Plomeros en La Plata: reparación de pérdidas, desobstrucciones, instalación de sanitarios y griferías en el día.",icon:"pipe",tags:"Pérdidas, Cañerías, Sanitarios, Desagües"},
-        {title:"Reformas & Obras",desc:"Refacciones y reformas en La Plata: baños, cocinas y ambientes. Albañilería y obras integrales en Gran La Plata.",icon:"house",tags:"Baños, Cocinas, Revestimientos, Pisos"}
-    ],
-    procesoDesc:"Desde el primer mensaje hasta la entrega final, todo bajo control y sin sorpresas.",
-    process:[
-        {title:"Contacto",desc:"Nos escribís por WhatsApp o llamás. Contanos qué necesitás y acordamos una visita sin compromiso."},
-        {title:"Diagnóstico Gratuito",desc:"Visitamos el lugar, analizamos el trabajo y te entregamos un presupuesto detallado sin cargo."},
-        {title:"Ejecución",desc:"Arrancamos en la fecha pactada con materiales de calidad y personal capacitado. Cero impacto en tu rutina."},
-        {title:"Garantía Escrita",desc:"Entregamos el trabajo con garantía documentada. Si algo falla, volvemos sin costo adicional."}
-    ],
-    guarantees:[
-        {title:"Puntualidad",desc:"Cumplimos con los plazos pactados. Si hay un imprevisto, te avisamos de inmediato.",icon:"clock"},
-        {title:"Garantía Escrita",desc:"Todos los trabajos incluyen certificado de garantía. Si algo falla, lo resolvemos sin costo.",icon:"shield"},
-        {title:"Precio Justo",desc:"Presupuesto detallado y sin sorpresas. El precio que te damos es el precio final.",icon:"money"},
-        {title:"Limpieza Total",desc:"Dejamos tu espacio impecable al terminar. Trabajamos con respeto por tu hogar.",icon:"thumb"}
-    ],
-    opinionStats:[
-        {value:"4.9/5",label:"Calificación Promedio"},{value:"+500",label:"Trabajos Completados"},
-        {value:"98%",label:"Clientes Satisfechos"},{value:"85%",label:"Nos Recomiendan"}
-    ],
-    testimonials:[
-        {text:"Hicieron el cielorraso de durlock en tiempo récord y con un terminado impecable. Súper recomendables, ya los contraté para la cocina.",name:"Marcela R.",loc:"Centro, La Plata",color:"red",initial:"M"},
-        {text:"Renovaron toda la instalación eléctrica del local. Trabajo prolijo, sin cortes innecesarios y con certificado de garantía.",name:"Javier C.",loc:"Tolosa, La Plata",color:"purple",initial:"J"},
-        {text:"Pintaron todo el departamento en dos días. Puntualísimos, buen precio y un resultado que superó todas mis expectativas.",name:"Laura P.",loc:"Gonnet, Gran La Plata",color:"orange",initial:"L"},
-        {text:"Nos arreglaron una pérdida de agua que otros plomeros no pudieron solucionar. Vinieron rápido y lo resolvieron en el día.",name:"Roberto M.",loc:"City Bell",color:"blue",initial:"R"},
-        {text:"Reformaron el baño completo: plomería, revestimientos, mueble y grifería. Coordinaron todo y quedó espectacular.",name:"Ana S.",loc:"La Plata Centro",color:"green",initial:"A"},
-        {text:"Hicieron todas las puertas de madera del departamento nuevo. Ajuste perfecto, pintadas y con herrajes de calidad.",name:"Diego F.",loc:"Ensenada",color:"yellow",initial:"D"},
-        {text:"Completar opinión del cliente.",name:"Carlos G.",loc:"Los Hornos, La Plata",color:"teal",initial:"C"},
-        {text:"Completar opinión del cliente.",name:"Valentina M.",loc:"Villa Elisa",color:"indigo",initial:"V"},
-        {text:"Completar opinión del cliente.",name:"Martín L.",loc:"Berisso",color:"cyan",initial:"M"},
-        {text:"Completar opinión del cliente.",name:"Sofía T.",loc:"La Plata Centro",color:"rose",initial:"S"},
-        {text:"Completar opinión del cliente.",name:"Nicolás P.",loc:"Gonnet",color:"amber",initial:"N"},
-        {text:"Completar opinión del cliente.",name:"Camila D.",loc:"City Bell",color:"pink",initial:"C"}
-    ],
-    faq:[
-        {q:"¿Hacen presupuesto sin cargo?",a:"Sí. El presupuesto es gratuito y sin compromiso. Visitamos el lugar en La Plata o Gran La Plata, evaluamos el trabajo y te pasamos un detalle por escrito."},
-        {q:"¿Trabajan en toda La Plata y Gran La Plata?",a:"Sí. Atendemos La Plata capital y toda la zona de Gran La Plata. Sin costo adicional por desplazamiento dentro del área."},
-        {q:"¿Dan garantía por escrito?",a:"Sí. Todos los trabajos se entregan con garantía documentada. Si algo falla, volvemos a resolverlo sin costo adicional."},
-        {q:"¿Cuánto tarda el presupuesto?",a:"Respondemos en menos de 2 horas. Coordinamos la visita en La Plata o Gran La Plata y te lo enviamos por escrito."}
-    ],
-    contact:{whatsapp:{desc:"Escribinos y te respondemos al toque",num:"+54 221 123-4567"},tel:{desc:"Lunes a sábado de 8 a 20hs",num:"+54 221 123-4567"},email:{desc:"Para consultas detalladas",addr:"info@reparmax.com.ar"},zona:"La Plata, Gonnet, City Bell, Villa Elisa, Tolosa, Los Hornos, Ensenada, Berisso y toda la zona de Gran La Plata.",horarios:"Lunes a Viernes: 8:00 – 20:00 · Sábados: 8:00 – 14:00 · Urgencias: 24hs"},
-    ctaSubtitle:"Respondemos en menos de 2 horas · Presupuesto gratuito · Sin compromiso"
-};
-
-// ═══════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════
-const CMS_KEY = 'reparmax_cms';
 let data;
 
 function loadData() {
     try {
-        const s = JSON.parse(localStorage.getItem(CMS_KEY) || 'null');
+        const s = JSON.parse(localStorage.getItem(CONFIG.slug + '_cms') || 'null');
         if (s && s.services) { data = s; return; }
     } catch(e) {}
-    data = JSON.parse(JSON.stringify(DEFAULTS));
+    data = JSON.parse(JSON.stringify(CONFIG));
 }
 
 function saveAll() {
     collectFields();
-    localStorage.setItem(CMS_KEY, JSON.stringify(data));
+    localStorage.setItem(CONFIG.slug + '_cms', JSON.stringify(data));
     showToast('Cambios guardados correctamente');
 }
 
 function resetAll() {
     if (!confirm('¿Resetear TODO al contenido original?')) return;
-    localStorage.removeItem(CMS_KEY);
-    data = JSON.parse(JSON.stringify(DEFAULTS));
+    localStorage.removeItem(CONFIG.slug + '_cms');
+    data = JSON.parse(JSON.stringify(CONFIG));
     renderAllFields();
     showToast('Contenido reseteado');
 }
@@ -303,16 +296,16 @@ function resetAll() {
 // ═══════════════════════════════════════
 function doLogin() {
     const pass = document.getElementById('loginPass').value;
-    const stored = localStorage.getItem('reparmax_admin_pass') || 'admin';
+    const stored = localStorage.getItem(CONFIG.slug + '_admin_pass') || 'admin';
     if (pass === stored) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminPanel').classList.remove('hidden');
-        sessionStorage.setItem('reparmax_logged', '1');
+        sessionStorage.setItem(CONFIG.slug + '_logged', '1');
     } else {
         document.getElementById('loginError').classList.remove('hidden');
     }
 }
-if (sessionStorage.getItem('reparmax_logged') === '1') {
+if (sessionStorage.getItem(CONFIG.slug + '_logged') === '1') {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminPanel').classList.remove('hidden');
 }
@@ -391,6 +384,26 @@ function renderAllFields() {
     renderTestimonials();
     renderFaq();
     renderContact();
+
+    // Business identity
+    document.getElementById('h-bname').value = data.businessName || CONFIG.businessName;
+    document.getElementById('h-tagline').value = data.tagline || CONFIG.tagline;
+    document.getElementById('h-location').value = data.location || CONFIG.location;
+
+    // Maps & social
+    document.getElementById('c-maps-url').value = data.googleMapsUrl || CONFIG.googleMapsUrl || '';
+    document.getElementById('c-maps-embed').value = data.googleMapsEmbed || CONFIG.googleMapsEmbed || '';
+    document.getElementById('c-social-ig').value = (data.socialMedia || CONFIG.socialMedia || {}).instagram || '';
+    document.getElementById('c-social-fb').value = (data.socialMedia || CONFIG.socialMedia || {}).facebook || '';
+    document.getElementById('c-social-tt').value = (data.socialMedia || CONFIG.socialMedia || {}).tiktok || '';
+    document.getElementById('c-social-yt').value = (data.socialMedia || CONFIG.socialMedia || {}).youtube || '';
+
+    // About
+    renderAbout();
+
+    // Logos
+    document.getElementById('loginLogo').textContent = CONFIG.businessName;
+    document.getElementById('adminLogo').textContent = CONFIG.businessName;
 }
 
 // ── Stats ──
@@ -505,6 +518,43 @@ function renderContact() {
     document.getElementById('c-horarios').value = c.horarios;
 }
 
+// ── About ──
+function renderAbout() {
+    var ab = data.about || CONFIG.about;
+    document.getElementById('ab-h1').value = ab.heading1 || '';
+    document.getElementById('ab-h2').value = ab.heading2 || '';
+    document.getElementById('ab-desc').value = ab.description || '';
+    document.getElementById('ab-mission').value = ab.mission || '';
+    document.getElementById('ab-vision').value = ab.vision || '';
+    document.getElementById('ab-team').value = ab.teamDescription || '';
+    renderValues();
+}
+
+function renderValues() {
+    var vals = (data.about || CONFIG.about).values || [];
+    document.getElementById('valuesFields').innerHTML = vals.map(function(v, i) {
+        return '<div class="card"><button class="del-btn" onclick="removeValue(' + i + ')">&times;</button>' +
+        '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">' +
+        '<div class="fg"><label class="fl">Título</label><input class="val-title" value="' + esc(v.title) + '"></div>' +
+        '<div class="fg"><label class="fl">Descripción</label><textarea class="val-desc">' + esc(v.desc) + '</textarea></div>' +
+        '</div>' +
+        '<div class="fg"><label class="fl mb-2">Ícono</label>' + iconPickerHtml(v.icon, 'val-icon-' + i) + '</div>' +
+        '</div>';
+    }).join('');
+}
+
+function addValue() {
+    if (!data.about) data.about = JSON.parse(JSON.stringify(CONFIG.about));
+    data.about.values.push({title:"Nuevo Valor",desc:"Descripción.",icon:"star"});
+    renderValues();
+}
+
+function removeValue(i) {
+    if (!data.about) data.about = JSON.parse(JSON.stringify(CONFIG.about));
+    data.about.values.splice(i,1);
+    renderValues();
+}
+
 // ═══════════════════════════════════════
 // COLLECT FROM FIELDS → DATA
 // ═══════════════════════════════════════
@@ -578,6 +628,39 @@ function collectFields() {
         zona: document.getElementById('c-zona').value,
         horarios: document.getElementById('c-horarios').value
     };
+
+    // Business identity
+    data.businessName = document.getElementById('h-bname').value;
+    data.tagline = document.getElementById('h-tagline').value;
+    data.location = document.getElementById('h-location').value;
+
+    // Maps
+    data.googleMapsUrl = document.getElementById('c-maps-url').value;
+    data.googleMapsEmbed = document.getElementById('c-maps-embed').value;
+
+    // Social
+    data.socialMedia = {
+        instagram: document.getElementById('c-social-ig').value,
+        facebook: document.getElementById('c-social-fb').value,
+        tiktok: document.getElementById('c-social-tt').value,
+        youtube: document.getElementById('c-social-yt').value
+    };
+
+    // About
+    if (!data.about) data.about = JSON.parse(JSON.stringify(CONFIG.about));
+    data.about.heading1 = document.getElementById('ab-h1').value;
+    data.about.heading2 = document.getElementById('ab-h2').value;
+    data.about.description = document.getElementById('ab-desc').value;
+    data.about.mission = document.getElementById('ab-mission').value;
+    data.about.vision = document.getElementById('ab-vision').value;
+    data.about.teamDescription = document.getElementById('ab-team').value;
+
+    // Values
+    var vT = document.querySelectorAll('.val-title');
+    var vD = document.querySelectorAll('.val-desc');
+    data.about.values = Array.from(vT).map(function(el, i) {
+        return { title: el.value, desc: vD[i]?.value || '', icon: getPickedIcon('val-icon-' + i) };
+    });
 }
 
 // ═══════════════════════════════════════
