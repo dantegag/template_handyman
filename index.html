@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReparMax – Reparaciones Integrales en La Plata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                colors: { bg: '#0c0c0c', bg2: '#141414', accent: '#f5a623', accent2: '#e8891b', textMain: '#f0ede8', muted: '#777', borderC: 'rgba(255,255,255,0.07)' },
+                fontFamily: { sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+                animation: {
+                    'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
+                    'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear'
+                },
+                keyframes: {
+                    'shimmer-slide': { to: { transform: 'translate(calc(100cqw - 100%), 0)' } },
+                    'spin-around': {
+                        '0%': { transform: 'translateZ(0) rotate(0)' },
+                        '15%, 35%': { transform: 'translateZ(0) rotate(90deg)' },
+                        '65%, 85%': { transform: 'translateZ(0) rotate(270deg)' },
+                        '100%': { transform: 'translateZ(0) rotate(360deg)' }
+                    }
+                }
+            }}
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        .hero-paths { will-change: contents; contain: strict; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .tag { display: inline-block; padding: 4px 14px; border-radius: 9999px; font-size: 12px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1); color: #f5a623; }
+        .tag:hover { background: rgba(245,166,35,0.1); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-icon { transition: transform 0.3s ease; }
+        @keyframes scrollUp { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
+        .tst-col-inner { animation: scrollUp linear infinite; }
+        .tst-col:hover .tst-col-inner { animation-play-state: paused; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0c0c0c; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-menu.open { transform: translateX(0); }
+        input, textarea, select { background: #141414; border: 1px solid rgba(255,255,255,0.07); color: #f0ede8; border-radius: 0.75rem; padding: 0.75rem 1rem; font-family: inherit; font-size: 0.875rem; transition: border-color 0.2s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #f5a623; }
+        input::placeholder, textarea::placeholder { color: #555; }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-borderC">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#hero" class="text-accent font-extrabold text-xl tracking-tight uppercase">Reparmax</a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-muted">
+            <a href="#servicios" class="hover:text-textMain transition">Servicios</a>
+            <a href="#proceso" class="hover:text-textMain transition">Proceso</a>
+            <a href="#opiniones" class="hover:text-textMain transition">Opiniones</a>
+            <a href="#contacto" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">Consultar</a>
+        </div>
+        <button class="md:hidden text-textMain" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+</nav>
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-64 h-full z-50 bg-bg2 border-l border-borderC p-6 pt-20">
+    <button class="absolute top-5 right-5 text-textMain" onclick="document.getElementById('mobileMenu').classList.remove('open')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="flex flex-col gap-6 text-sm">
+        <a href="#hero" class="text-accent font-semibold" onclick="closeMobile()">Inicio</a>
+        <a href="#servicios" class="text-muted hover:text-textMain transition" onclick="closeMobile()">Servicios</a>
+        <a href="#proceso" class="text-muted hover:text-textMain transition" onclick="closeMobile()">Proceso</a>
+        <a href="#opiniones" class="text-muted hover:text-textMain transition" onclick="closeMobile()">Opiniones</a>
+        <a href="#contacto" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center" onclick="closeMobile()">Consultar</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div class="hero-paths absolute inset-0 pointer-events-none" id="heroPaths"></div>
+    <div class="relative z-10 text-center max-w-3xl mx-auto px-6">
+        <div class="inline-block mb-6 px-5 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-medium tracking-widest uppercase" id="heroBadge"></div>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-tight mb-4">
+            <span class="text-textMain" id="heroH1"></span><br>
+            <span class="text-accent" id="heroH2"></span>
+        </h1>
+        <p class="text-muted text-sm sm:text-base tracking-[0.25em] uppercase mb-6" id="heroSubtitle"></p>
+        <p class="text-muted text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed" id="heroDesc"></p>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <a href="#contacto" class="bg-accent hover:bg-accent2 text-bg font-semibold px-7 py-3 rounded-lg transition text-sm">Pedir Presupuesto Gratis</a>
+            <a href="#servicios" class="border border-borderC hover:border-muted text-textMain font-semibold px-7 py-3 rounded-lg transition text-sm">Ver Servicios</a>
+        </div>
+        <div class="inline-flex items-center gap-6 sm:gap-10 bg-bg2 border border-borderC rounded-2xl px-8 py-5" id="statsBar"></div>
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+            <div>
+                <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">Lo que hacemos</p>
+                <h2 class="text-4xl sm:text-5xl font-extrabold"><span class="text-textMain">SERVICIOS </span><span class="text-accent">INTEGRALES</span></h2>
+            </div>
+            <p class="text-muted text-sm max-w-sm mt-4 md:mt-0" id="serviciosSubtitle"></p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="servicesGrid"></div>
+    </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div>
+                <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">Cómo trabajamos</p>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-4"><span class="text-textMain">PROCESO </span><span class="text-accent">SIMPLE</span></h2>
+                <p class="text-muted text-sm leading-relaxed mb-8" id="procesoDesc"></p>
+                <a href="#contacto" class="inline-block bg-accent hover:bg-accent2 text-bg font-semibold px-7 py-3 rounded-lg transition text-sm">Empezar Ahora</a>
+            </div>
+            <div class="space-y-8" id="processSteps"></div>
+        </div>
+    </div>
+</section>
+
+<!-- GARANTÍAS -->
+<section class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">¿Por qué ReparMax?</p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold"><span class="text-textMain">NUESTRAS </span><span class="text-accent">GARANTÍAS</span></h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="guaranteesGrid"></div>
+    </div>
+</section>
+
+<!-- OPINIONES -->
+<section id="opiniones" class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">Lo que dicen</p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-10"><span class="text-textMain">CLIENTES </span><span class="text-accent">SATISFECHOS</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16" id="opinionStats"></div>
+        </div>
+        <div class="flex justify-center gap-6 max-h-[740px] overflow-hidden" id="testimonialsColumns" style="-webkit-mask-image:linear-gradient(to bottom,transparent,black 25%,black 75%,transparent);mask-image:linear-gradient(to bottom,transparent,black 25%,black 75%,transparent);"></div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-3xl mx-auto text-center">
+        <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">Preguntas frecuentes</p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold mb-16"><span class="text-textMain">RESOLVEMOS TUS </span><span class="text-accent">DUDAS</span></h2>
+        <div class="text-left space-y-4" id="faqList"></div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">¿Listo para empezar?</p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-2"><span class="text-textMain">PEDÍ TU </span><span class="text-accent">PRESUPUESTO</span></h2>
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-6"><span class="text-textMain">SIN CARGO</span></h2>
+            <p class="text-muted text-sm" id="ctaSubtitle"></p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Form -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                <h3 class="text-2xl font-extrabold text-textMain mb-6">Envianos tu consulta</h3>
+                <form id="contactForm" class="space-y-5" onsubmit="handleSubmit(event)">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div><label class="block text-xs text-muted mb-2">Nombre *</label><input type="text" required placeholder="Tu nombre"></div>
+                        <div><label class="block text-xs text-muted mb-2">Teléfono *</label><input type="tel" required placeholder="221 123-4567"></div>
+                    </div>
+                    <div><label class="block text-xs text-muted mb-2">Email</label><input type="email" placeholder="tu@email.com" class="w-full"></div>
+                    <div><label class="block text-xs text-muted mb-2">Servicio *</label><select id="contactServiceSelect" required class="w-full"></select></div>
+                    <div><label class="block text-xs text-muted mb-2">Zona / Barrio *</label><input type="text" required placeholder="Ej: Centro, Gonnet..." class="w-full"></div>
+                    <div><label class="block text-xs text-muted mb-2">Describí el trabajo *</label><textarea required rows="4" placeholder="Contanos los detalles..." class="w-full resize-none"></textarea></div>
+                    <button type="submit" class="w-full bg-accent hover:bg-accent2 text-bg font-semibold py-3.5 rounded-lg transition text-sm">Enviar Consulta</button>
+                    <p class="text-muted text-xs text-center">Respondemos en menos de 2 horas · Sin compromiso</p>
+                </form>
+                <div id="formSuccess" class="hidden text-center py-12">
+                    <div class="w-16 h-16 mx-auto bg-green-500/20 rounded-full flex items-center justify-center text-green-400 mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h3 class="text-textMain font-bold text-xl mb-2">¡Consulta enviada!</h3>
+                    <p class="text-muted text-sm">Te vamos a contactar en menos de 2 horas.</p>
+                </div>
+            </div>
+            <!-- Info -->
+            <div class="space-y-6" id="contactInfo"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+            <span class="text-accent font-extrabold text-sm uppercase">Reparmax</span>
+            <span class="text-muted text-xs ml-3">Reparaciones Integrales · La Plata y Gran La Plata</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="admin.html" class="text-muted hover:text-accent text-xs transition">Admin</a>
+            <p class="text-muted text-xs">© 2025 ReparMax. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════
+// ICONS MAP
+// ═══════════════════════════════════════
+const ICONS = {
+    bolt:   '<path d="M13 2L3 14h9l-1 10 10-12h-9l1-10z"/>',
+    paint:  '<path d="M19 3H5a2 2 0 00-2 2v2a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/><path d="M12 9v12"/><path d="M8 21h8"/>',
+    wood:   '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>',
+    grid:   '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+    pipe:   '<path d="M6 12h12M6 12l-2 4h16l-2-4M10 12V6a2 2 0 114 0v6"/>',
+    house:  '<path d="M3 21h18M3 21V9l9-7 9 7v12"/><path d="M9 21v-6h6v6"/>',
+    wrench: '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
+    star:   '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>',
+    clock:  '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+    shield: '<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+    money:  '<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z"/>',
+    thumb:  '<path d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>',
+    check:  '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>',
+    phone:  '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>',
+    mail:   '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/>',
+    pin:    '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>'
+};
+
+const COLORS = ['red','purple','orange','blue','green','yellow','pink','teal','indigo','cyan','rose','amber'];
+
+// ═══════════════════════════════════════
+// DEFAULT DATA
+// ═══════════════════════════════════════
+const DEFAULTS = {
+    hero: {
+        badge: "Reparaciones Profesionales · La Plata y Gran La Plata",
+        heading1: "TODO LO QUE TU",
+        heading2: "HOGAR NECESITA",
+        subtitle: "Electricidad · Pintura · Madera · Durlock · Plomería",
+        description: "Reparaciones en La Plata y Gran La Plata: profesionales especializados en cada área. Trabajo prolijo, puntualidad y garantía escrita en todos nuestros trabajos."
+    },
+    stats: [
+        { value: "+500", label: "Trabajos Realizados" },
+        { value: "8+", label: "Años de Experiencia" },
+        { value: "100%", label: "Estimación Garantizada" }
+    ],
+    serviciosSubtitle: "Profesionales especializados en cada área para darte la mejor solución, todo en un solo lugar.",
+    services: [
+        { title: "Electricidad", desc: "Instalaciones y reparaciones eléctricas en La Plata para hogar o comercio. Certificaciones y materiales de primera calidad.", icon: "bolt", tags: "Tableros, Iluminación, Enchufes, Cableado" },
+        { title: "Pintura", desc: "Pintura interior y exterior en La Plata y zona. Preparación de superficies, trazados y acabados con pinturas de alta durabilidad.", icon: "paint", tags: "Interior, Exterior, Texturado, Impermeabilizante" },
+        { title: "Madera & Carpintería", desc: "Carpinteros en La Plata: reparación y fabricación de muebles, puertas, ventanas y aberturas con terminaciones impecables.", icon: "wood", tags: "Puertas, Muebles, Pisos, Ventanas" },
+        { title: "Durlock & Drywall", desc: "Durlock y drywall en La Plata: tabiques divisorios, cielorrasos, revestimientos y estructuras de yeso con acabado perfecto.", icon: "grid", tags: "Tabiques, Cielorrasos, Nichos, Molduras" },
+        { title: "Plomería", desc: "Plomeros en La Plata: reparación de pérdidas, desobstrucciones, instalación de sanitarios y griferías en el día.", icon: "pipe", tags: "Pérdidas, Cañerías, Sanitarios, Desagües" },
+        { title: "Reformas & Obras", desc: "Refacciones y reformas en La Plata: baños, cocinas y ambientes. Albañilería y obras integrales en Gran La Plata.", icon: "house", tags: "Baños, Cocinas, Revestimientos, Pisos" }
+    ],
+    procesoDesc: "Desde el primer mensaje hasta la entrega final, todo bajo control y sin sorpresas.",
+    process: [
+        { title: "Contacto", desc: "Nos escribís por WhatsApp o llamás. Contanos qué necesitás y acordamos una visita sin compromiso." },
+        { title: "Diagnóstico Gratuito", desc: "Visitamos el lugar, analizamos el trabajo y te entregamos un presupuesto detallado sin cargo." },
+        { title: "Ejecución", desc: "Arrancamos en la fecha pactada con materiales de calidad y personal capacitado. Cero impacto en tu rutina." },
+        { title: "Garantía Escrita", desc: "Entregamos el trabajo con garantía documentada. Si algo falla, volvemos sin costo adicional." }
+    ],
+    guarantees: [
+        { title: "Puntualidad", desc: "Cumplimos con los plazos pactados. Si hay un imprevisto, te avisamos de inmediato.", icon: "clock" },
+        { title: "Garantía Escrita", desc: "Todos los trabajos incluyen certificado de garantía. Si algo falla, lo resolvemos sin costo.", icon: "shield" },
+        { title: "Precio Justo", desc: "Presupuesto detallado y sin sorpresas. El precio que te damos es el precio final.", icon: "money" },
+        { title: "Limpieza Total", desc: "Dejamos tu espacio impecable al terminar. Trabajamos con respeto por tu hogar.", icon: "thumb" }
+    ],
+    opinionStats: [
+        { value: "4.9/5", label: "Calificación Promedio" },
+        { value: "+500", label: "Trabajos Completados" },
+        { value: "98%", label: "Clientes Satisfechos" },
+        { value: "85%", label: "Nos Recomiendan" }
+    ],
+    testimonials: [
+        { text: "Hicieron el cielorraso de durlock en tiempo récord y con un terminado impecable. Súper recomendables, ya los contraté para la cocina.", name: "Marcela R.", loc: "Centro, La Plata", color: "red", initial: "M" },
+        { text: "Renovaron toda la instalación eléctrica del local. Trabajo prolijo, sin cortes innecesarios y con certificado de garantía.", name: "Javier C.", loc: "Tolosa, La Plata", color: "purple", initial: "J" },
+        { text: "Pintaron todo el departamento en dos días. Puntualísimos, buen precio y un resultado que superó todas mis expectativas.", name: "Laura P.", loc: "Gonnet, Gran La Plata", color: "orange", initial: "L" },
+        { text: "Nos arreglaron una pérdida de agua que otros plomeros no pudieron solucionar. Vinieron rápido y lo resolvieron en el día.", name: "Roberto M.", loc: "City Bell", color: "blue", initial: "R" },
+        { text: "Reformaron el baño completo: plomería, revestimientos, mueble y grifería. Coordinaron todo y quedó espectacular.", name: "Ana S.", loc: "La Plata Centro", color: "green", initial: "A" },
+        { text: "Hicieron todas las puertas de madera del departamento nuevo. Ajuste perfecto, pintadas y con herrajes de calidad.", name: "Diego F.", loc: "Ensenada", color: "yellow", initial: "D" },
+        { text: "Completar opinión del cliente.", name: "Carlos G.", loc: "Los Hornos, La Plata", color: "teal", initial: "C" },
+        { text: "Completar opinión del cliente.", name: "Valentina M.", loc: "Villa Elisa", color: "indigo", initial: "V" },
+        { text: "Completar opinión del cliente.", name: "Martín L.", loc: "Berisso", color: "cyan", initial: "M" },
+        { text: "Completar opinión del cliente.", name: "Sofía T.", loc: "La Plata Centro", color: "rose", initial: "S" },
+        { text: "Completar opinión del cliente.", name: "Nicolás P.", loc: "Gonnet", color: "amber", initial: "N" },
+        { text: "Completar opinión del cliente.", name: "Camila D.", loc: "City Bell", color: "pink", initial: "C" }
+    ],
+    faq: [
+        { q: "¿Hacen presupuesto sin cargo?", a: "Sí. El presupuesto es gratuito y sin compromiso. Visitamos el lugar en La Plata o Gran La Plata, evaluamos el trabajo y te pasamos un detalle por escrito." },
+        { q: "¿Trabajan en toda La Plata y Gran La Plata?", a: "Sí. Atendemos La Plata capital y toda la zona de Gran La Plata. Sin costo adicional por desplazamiento dentro del área." },
+        { q: "¿Dan garantía por escrito?", a: "Sí. Todos los trabajos se entregan con garantía documentada. Si algo falla, volvemos a resolverlo sin costo adicional." },
+        { q: "¿Cuánto tarda el presupuesto?", a: "Respondemos en menos de 2 horas. Coordinamos la visita en La Plata o Gran La Plata y te lo enviamos por escrito." }
+    ],
+    contact: {
+        whatsapp: { desc: "Escribinos y te respondemos al toque", num: "+54 221 123-4567" },
+        tel: { desc: "Lunes a sábado de 8 a 20hs", num: "+54 221 123-4567" },
+        email: { desc: "Para consultas detalladas", addr: "info@reparmax.com.ar" },
+        zona: "La Plata, Gonnet, City Bell, Villa Elisa, Tolosa, Los Hornos, Ensenada, Berisso y toda la zona de Gran La Plata.",
+        horarios: "Lunes a Viernes: 8:00 – 20:00 · Sábados: 8:00 – 14:00 · Urgencias: 24hs"
+    },
+    ctaSubtitle: "Respondemos en menos de 2 horas · Presupuesto gratuito · Sin compromiso"
+};
+
+// ═══════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function icon(name) { return '<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' + (ICONS[name] || ICONS.wrench) + '</svg>'; }
+function iconLg(name) { return '<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' + (ICONS[name] || ICONS.wrench) + '</svg>'; }
+
+function shimmerCard(content, extraClass) {
+    return '<div class="group relative z-0 overflow-hidden rounded-2xl border border-borderC hover:border-accent/30 transition-colors duration-500 ' + (extraClass || '') + '" style="--spread:90deg;--shimmer-color:#f5a623;--radius:1rem;--speed:3s;--cut:1px;--bg:#141414;">' +
+        '<div class="absolute inset-0 overflow-visible [container-type:size] -z-30 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">' +
+            '<div class="absolute inset-0 h-[100cqh] animate-shimmer-slide [aspect-ratio:1] [border-radius:0] [mask:none]">' +
+                '<div class="animate-spin-around absolute -inset-full w-auto rotate-0 [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]"></div>' +
+            '</div>' +
+        '</div>' +
+        '<div class="absolute -z-20 [background:var(--bg)] [border-radius:var(--radius)] [inset:var(--cut)]"></div>' +
+        '<div class="relative z-10 p-7">' + content + '</div>' +
+    '</div>';
+}
+
+function getData() {
+    try {
+        const stored = JSON.parse(localStorage.getItem('reparmax_cms') || 'null');
+        if (stored && stored.services) return stored;
+    } catch(e) {}
+    return JSON.parse(JSON.stringify(DEFAULTS));
+}
+
+// ═══════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════
+function renderAll() {
+    const d = getData();
+
+    // Hero
+    document.getElementById('heroBadge').textContent = d.hero.badge;
+    document.getElementById('heroH1').textContent = d.hero.heading1;
+    document.getElementById('heroH2').textContent = d.hero.heading2;
+    document.getElementById('heroSubtitle').textContent = d.hero.subtitle;
+    document.getElementById('heroDesc').textContent = d.hero.description;
+
+    // Stats bar
+    document.getElementById('statsBar').innerHTML = d.stats.map((s, i) =>
+        (i > 0 ? '<div class="w-px h-10 bg-borderC"></div>' : '') +
+        '<div class="text-center"><div class="text-2xl sm:text-3xl font-bold text-textMain">' + esc(s.value) + '</div><div class="text-xs text-muted mt-1">' + esc(s.label) + '</div></div>'
+    ).join('');
+
+    // Servicios subtitle
+    document.getElementById('serviciosSubtitle').textContent = d.serviciosSubtitle || '';
+
+    // Services grid
+    document.getElementById('servicesGrid').innerHTML = d.services.map(s =>
+        shimmerCard(
+            '<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">' + icon(s.icon) + '</div>' +
+            '<h3 class="text-lg font-bold text-textMain mb-2">' + esc(s.title) + '</h3>' +
+            '<p class="text-muted text-sm mb-4 leading-relaxed">' + esc(s.desc) + '</p>' +
+            '<div class="flex flex-wrap gap-2">' + (s.tags || '').split(',').map(t => t.trim()).filter(t => t).map(t => '<span class="tag">' + esc(t) + '</span>').join('') + '</div>'
+        )
+    ).join('');
+
+    // Proceso
+    document.getElementById('procesoDesc').textContent = d.procesoDesc || '';
+    document.getElementById('processSteps').innerHTML = d.process.map((p, i) =>
+        '<div class="flex gap-6">' +
+            '<div class="text-accent font-bold text-lg mt-1 min-w-[32px]">' + String(i + 1).padStart(2, '0') + '</div>' +
+            '<div><h3 class="text-textMain font-bold text-lg mb-1">' + esc(p.title) + '</h3>' +
+            '<p class="text-muted text-sm leading-relaxed">' + esc(p.desc) + '</p></div>' +
+        '</div>'
+    ).join('');
+
+    // Guarantees
+    document.getElementById('guaranteesGrid').innerHTML = d.guarantees.map(g =>
+        shimmerCard(
+            '<div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">' + iconLg(g.icon) + '</div>' +
+            '<h3 class="text-textMain font-bold mb-2">' + esc(g.title) + '</h3>' +
+            '<p class="text-muted text-sm leading-relaxed">' + esc(g.desc) + '</p>',
+            'text-center'
+        )
+    ).join('');
+
+    // Opinion stats
+    document.getElementById('opinionStats').innerHTML = d.opinionStats.map(s =>
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-5 text-center">' +
+            '<div class="text-2xl font-bold text-accent mb-1">' + esc(s.value) + '</div>' +
+            '<div class="text-muted text-xs">' + esc(s.label) + '</div>' +
+        '</div>'
+    ).join('');
+
+    // Testimonials – scrolling columns
+    const tst = d.testimonials;
+    const third = Math.ceil(tst.length / 3);
+    const cols = [tst.slice(0, third), tst.slice(third, third * 2), tst.slice(third * 2)];
+    const durations = [25, 32, 28];
+    const vis = ['', 'hidden md:block', 'hidden lg:block'];
+    function tCard(t) {
+        return '<div class="bg-bg2 border border-borderC rounded-2xl p-7 max-w-xs w-full">' +
+            '<div class="flex gap-1 mb-4"><span class="text-accent text-sm">★★★★★</span></div>' +
+            '<p class="text-muted text-sm leading-relaxed mb-6">"' + esc(t.text) + '"</p>' +
+            '<div class="flex items-center gap-3">' +
+                '<div class="w-10 h-10 rounded-full bg-' + esc(t.color) + '-500/20 flex items-center justify-center text-' + esc(t.color) + '-400 font-bold text-sm">' + esc(t.initial) + '</div>' +
+                '<div><div class="text-textMain font-semibold text-sm">' + esc(t.name) + '</div>' +
+                '<div class="text-muted text-xs">' + esc(t.loc) + '</div></div>' +
+            '</div>' +
+        '</div>';
+    }
+    document.getElementById('testimonialsColumns').innerHTML = cols.map((col, ci) => {
+        if (!col.length) return '';
+        const cards = col.map(tCard).join('');
+        return '<div class="tst-col ' + vis[ci] + '">' +
+            '<div class="tst-col-inner flex flex-col gap-6 pb-6" style="animation-duration:' + durations[ci] + 's">' +
+            cards + cards +
+            '</div></div>';
+    }).join('');
+
+    // FAQ
+    document.getElementById('faqList').innerHTML = d.faq.map((f, i) =>
+        '<div class="faq-item' + (i === 0 ? ' open' : '') + (i > 0 ? ' border-t border-borderC' : '') + '">' +
+            '<button class="w-full flex items-center justify-between py-4 text-left" onclick="toggleFaq(this)">' +
+                '<span class="text-textMain font-semibold text-sm">' + esc(f.q) + '</span>' +
+                '<span class="faq-icon text-accent text-xl leading-none">+</span>' +
+            '</button>' +
+            '<div class="faq-answer text-muted text-sm leading-relaxed pb-4">' + esc(f.a) + '</div>' +
+        '</div>'
+    ).join('');
+
+    // CTA subtitle
+    document.getElementById('ctaSubtitle').textContent = d.ctaSubtitle || '';
+
+    // Contact info
+    const c = d.contact;
+    document.getElementById('contactInfo').innerHTML =
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">' +
+            '<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-green-500/10 text-green-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg></div>' +
+            '<div><h3 class="text-textMain font-bold mb-1">WhatsApp</h3><p class="text-muted text-sm mb-1">' + esc(c.whatsapp.desc) + '</p><p class="text-accent font-semibold text-sm">' + esc(c.whatsapp.num) + '</p></div></div>' +
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">' +
+            '<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-accent/10 text-accent">' + icon('phone') + '</div>' +
+            '<div><h3 class="text-textMain font-bold mb-1">Teléfono</h3><p class="text-muted text-sm mb-1">' + esc(c.tel.desc) + '</p><p class="text-accent font-semibold text-sm">' + esc(c.tel.num) + '</p></div></div>' +
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">' +
+            '<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">' + icon('mail') + '</div>' +
+            '<div><h3 class="text-textMain font-bold mb-1">Email</h3><p class="text-muted text-sm mb-1">' + esc(c.email.desc) + '</p><p class="text-accent font-semibold text-sm">' + esc(c.email.addr) + '</p></div></div>' +
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">' +
+            '<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-red-500/10 text-red-400">' + icon('pin') + '</div>' +
+            '<div><h3 class="text-textMain font-bold mb-1">Zona de Cobertura</h3><p class="text-muted text-sm">' + esc(c.zona) + '</p></div></div>' +
+        '<div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">' +
+            '<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-400">' + icon('clock') + '</div>' +
+            '<div><h3 class="text-textMain font-bold mb-1">Horarios</h3><p class="text-muted text-sm">' + esc(c.horarios) + '</p></div></div>';
+
+    // Service select in contact form
+    const sel = document.getElementById('contactServiceSelect');
+    sel.innerHTML = '<option value="">Seleccionar servicio...</option>' +
+        d.services.map(s => '<option value="' + esc(s.title) + '">' + esc(s.title) + '</option>').join('') +
+        '<option value="otro">Otro</option>';
+}
+
+// ═══════════════════════════════════════
+// FAQ & UI
+// ═══════════════════════════════════════
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+}
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.remove('hidden');
+}
+
+// ═══════════════════════════════════════
+// ANIMATED HERO PATHS
+// ═══════════════════════════════════════
+(function() {
+    const container = document.getElementById('heroPaths');
+    if (!container) return;
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+    container.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    let isVisible = true, rafId = null;
+    const TOTAL=12, STEP=3, LINE_SEG=30, GAP_SEG=15, CYCLE=45, VW=696, VH=316;
+    const paths = [];
+    [1,-1].forEach(pos => {
+        for(let j=0;j<TOTAL;j++){let i=j*STEP,p=new Path2D(),mx=-(380-i*5*pos),my=-(189+i*6);
+        p.moveTo(mx,my);p.bezierCurveTo(mx,my,-(312-i*5*pos),216-i*6,152-i*5*pos,343-i*6);
+        p.bezierCurveTo(616-i*5*pos,470-i*6,684-i*5*pos,875-i*6,684-i*5*pos,875-i*6);
+        paths.push({path:p,lw:+(0.5+i*0.03).toFixed(2),alpha:+(0.1+i*0.03).toFixed(2),speed:10+j*0.7});}
+    });
+    let sx=1,sy=1;
+    function resize(){const r=container.getBoundingClientRect();if(!r.width||!r.height)return;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=r.width*dpr;canvas.height=r.height*dpr;sx=dpr*r.width/VW;sy=dpr*r.height/VH;}
+    function draw(now){if(!isVisible){rafId=null;return;}const t=now*0.001;ctx.setTransform(sx,0,0,sy,0,0);ctx.clearRect(-500,-500,2000,2000);ctx.setLineDash([LINE_SEG,GAP_SEG]);
+    for(const p of paths){ctx.strokeStyle='rgba(245,166,35,'+p.alpha+')';ctx.lineWidth=p.lw;ctx.lineDashOffset=-(t*p.speed)%CYCLE;ctx.stroke(p.path);}rafId=requestAnimationFrame(draw);}
+    new IntersectionObserver(e=>{isVisible=e[0].isIntersecting;if(isVisible&&!rafId)rafId=requestAnimationFrame(draw);},{threshold:0}).observe(container);
+    addEventListener('resize',resize);resize();rafId=requestAnimationFrame(draw);
+})();
+
+// Init
+renderAll();
+</script>
+</body>
+</html>

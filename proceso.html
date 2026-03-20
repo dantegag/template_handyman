@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso – ReparMax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                colors: { bg: '#0c0c0c', bg2: '#141414', accent: '#f5a623', accent2: '#e8891b', textMain: '#f0ede8', muted: '#777', borderC: 'rgba(255,255,255,0.07)' },
+                fontFamily: { sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] }
+            }}
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0c0c0c; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-menu.open { transform: translateX(0); }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-borderC">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-accent font-extrabold text-xl tracking-tight uppercase">Reparmax</a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-muted">
+            <a href="servicios.html" class="hover:text-textMain transition">Servicios</a>
+            <a href="proceso.html" class="text-textMain font-semibold transition">Proceso</a>
+            <a href="opiniones.html" class="hover:text-textMain transition">Opiniones</a>
+            <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">Consultar</a>
+        </div>
+        <button class="md:hidden text-textMain" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+</nav>
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-64 h-full z-50 bg-bg2 border-l border-borderC p-6 pt-20">
+    <button class="absolute top-5 right-5 text-textMain" onclick="document.getElementById('mobileMenu').classList.remove('open')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="flex flex-col gap-6 text-sm">
+        <a href="index.html" class="text-muted hover:text-textMain transition">Inicio</a>
+        <a href="servicios.html" class="text-muted hover:text-textMain transition">Servicios</a>
+        <a href="proceso.html" class="text-accent font-semibold">Proceso</a>
+        <a href="opiniones.html" class="text-muted hover:text-textMain transition">Opiniones</a>
+        <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center">Consultar</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="pt-32 pb-16 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="inline-block mb-6 px-5 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-medium tracking-widest uppercase">
+            Cómo Trabajamos
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
+            <span class="text-textMain" data-cms="proceso.hero.heading1">PROCESO </span><span class="text-accent" data-cms="proceso.hero.heading2">TRANSPARENTE</span>
+        </h1>
+        <p class="text-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed" data-cms="proceso.hero.desc">
+            Desde el primer contacto hasta la entrega final, te acompañamos en cada paso con total transparencia y sin sorpresas.
+        </p>
+    </div>
+</section>
+
+<!-- TIMELINE DE PROCESO -->
+<section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="space-y-0">
+            <!-- Paso 1 -->
+            <div class="relative pl-16 pb-16 border-l-2 border-accent/20 ml-6">
+                <div class="absolute left-0 top-0 -translate-x-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-bg font-bold text-lg">1</div>
+                <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                    <h3 class="text-2xl font-extrabold text-textMain mb-2" data-cms="proceso.paso1.title">Contacto Inicial</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4" data-cms="proceso.paso1.desc">Nos contactás por WhatsApp, teléfono o a través del formulario de contacto. Contanos qué necesitás: puede ser una reparación puntual, una instalación nueva o una reforma completa. Respondemos en menos de 2 horas.</p>
+                    <img data-cms-img="proceso.paso1.img" src="https://placehold.co/700x300/1a1a1a/f5a623?text=Contacto+Inicial" alt="Contacto" class="rounded-xl border border-borderC w-full object-cover mt-4">
+                </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="relative pl-16 pb-16 border-l-2 border-accent/20 ml-6">
+                <div class="absolute left-0 top-0 -translate-x-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-bg font-bold text-lg">2</div>
+                <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                    <h3 class="text-2xl font-extrabold text-textMain mb-2" data-cms="proceso.paso2.title">Visita y Diagnóstico Gratuito</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4" data-cms="proceso.paso2.desc">Coordinamos una visita sin cargo a tu domicilio en La Plata o Gran La Plata. Nuestros profesionales evalúan el trabajo in situ, toman medidas y te asesoran sobre la mejor solución. Sin compromiso.</p>
+                    <img data-cms-img="proceso.paso2.img" src="https://placehold.co/700x300/1a1a1a/f5a623?text=Diagnóstico+Gratuito" alt="Diagnóstico" class="rounded-xl border border-borderC w-full object-cover mt-4">
+                </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="relative pl-16 pb-16 border-l-2 border-accent/20 ml-6">
+                <div class="absolute left-0 top-0 -translate-x-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-bg font-bold text-lg">3</div>
+                <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                    <h3 class="text-2xl font-extrabold text-textMain mb-2" data-cms="proceso.paso3.title">Presupuesto Detallado</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4" data-cms="proceso.paso3.desc">Te enviamos un presupuesto por escrito con el detalle de materiales, mano de obra, plazos de ejecución y forma de pago. Todo claro y sin letras chicas. Si aceptás, coordinamos la fecha de inicio.</p>
+                    <img data-cms-img="proceso.paso3.img" src="https://placehold.co/700x300/1a1a1a/f5a623?text=Presupuesto+Detallado" alt="Presupuesto" class="rounded-xl border border-borderC w-full object-cover mt-4">
+                </div>
+            </div>
+
+            <!-- Paso 4 -->
+            <div class="relative pl-16 pb-16 border-l-2 border-accent/20 ml-6">
+                <div class="absolute left-0 top-0 -translate-x-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-bg font-bold text-lg">4</div>
+                <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                    <h3 class="text-2xl font-extrabold text-textMain mb-2" data-cms="proceso.paso4.title">Ejecución del Trabajo</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4" data-cms="proceso.paso4.desc">Arrancamos en la fecha pactada con materiales de calidad y personal capacitado. Mantenemos tu espacio limpio y ordenado. Te mantenemos informado del avance en todo momento.</p>
+                    <img data-cms-img="proceso.paso4.img" src="https://placehold.co/700x300/1a1a1a/f5a623?text=Ejecución+del+Trabajo" alt="Ejecución" class="rounded-xl border border-borderC w-full object-cover mt-4">
+                </div>
+            </div>
+
+            <!-- Paso 5 -->
+            <div class="relative pl-16 ml-6">
+                <div class="absolute left-0 top-0 -translate-x-1/2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-bg font-bold text-lg">5</div>
+                <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+                    <h3 class="text-2xl font-extrabold text-textMain mb-2" data-cms="proceso.paso5.title">Entrega y Garantía Escrita</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4" data-cms="proceso.paso5.desc">Entregamos el trabajo terminado con una revisión conjunta. Te damos un certificado de garantía por escrito. Si algo no te convence o falla, volvemos a resolverlo sin costo adicional.</p>
+                    <img data-cms-img="proceso.paso5.img" src="https://placehold.co/700x300/1a1a1a/f5a623?text=Garantía+Escrita" alt="Garantía" class="rounded-xl border border-borderC w-full object-cover mt-4">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">¿Por qué ReparMax?</p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold">
+                <span class="text-textMain">NUESTRAS </span><span class="text-accent">GARANTÍAS</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 text-center">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-textMain font-bold mb-2" data-cms="proceso.garantia1.title">Puntualidad</h3>
+                <p class="text-muted text-sm leading-relaxed" data-cms="proceso.garantia1.desc">Cumplimos con los plazos pactados. Si hay un imprevisto, te avisamos de inmediato y coordinamos sin demoras.</p>
+            </div>
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 text-center">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3 class="text-textMain font-bold mb-2" data-cms="proceso.garantia2.title">Garantía Escrita</h3>
+                <p class="text-muted text-sm leading-relaxed" data-cms="proceso.garantia2.desc">Todos los trabajos incluyen certificado de garantía. Si algo falla, lo resolvemos sin costo adicional.</p>
+            </div>
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 text-center">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                </div>
+                <h3 class="text-textMain font-bold mb-2" data-cms="proceso.garantia3.title">Precio Justo</h3>
+                <p class="text-muted text-sm leading-relaxed" data-cms="proceso.garantia3.desc">Presupuesto detallado y sin sorpresas. El precio que te damos es el precio final, sin costos ocultos.</p>
+            </div>
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 text-center">
+                <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>
+                </div>
+                <h3 class="text-textMain font-bold mb-2" data-cms="proceso.garantia4.title">Limpieza Total</h3>
+                <p class="text-muted text-sm leading-relaxed" data-cms="proceso.garantia4.desc">Dejamos tu espacio impecable al terminar. Trabajamos con respeto por tu hogar y tus pertenencias.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">
+            <span class="text-textMain">¿LISTO PARA </span><span class="text-accent">EMPEZAR?</span>
+        </h2>
+        <p class="text-muted text-sm mb-10" data-cms="proceso.cta.desc">El primer paso es simple: contactanos y te respondemos en menos de 2 horas con un diagnóstico gratuito.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-8 py-3.5 rounded-lg transition text-sm">Pedir Presupuesto Gratis</a>
+            <a href="servicios.html" class="border border-borderC hover:border-muted text-textMain font-semibold px-8 py-3.5 rounded-lg transition text-sm">Ver Servicios</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+            <span class="text-accent font-extrabold text-sm uppercase">Reparmax</span>
+            <span class="text-muted text-xs ml-3">Reparaciones Integrales · La Plata y Gran La Plata</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="admin.html" class="text-muted hover:text-accent text-xs transition">Admin</a>
+            <p class="text-muted text-xs">© 2025 ReparMax. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function() {
+    const data = JSON.parse(localStorage.getItem('reparmax_cms') || '{}');
+    document.querySelectorAll('[data-cms]').forEach(el => {
+        const key = el.getAttribute('data-cms');
+        if (data[key] !== undefined && data[key] !== '') el.textContent = data[key];
+    });
+    document.querySelectorAll('[data-cms-img]').forEach(el => {
+        const key = el.getAttribute('data-cms-img');
+        if (data[key] !== undefined && data[key] !== '') el.src = data[key];
+    });
+})();
+</script>
+</body>
+</html>

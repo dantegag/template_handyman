@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto – ReparMax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                colors: { bg: '#0c0c0c', bg2: '#141414', accent: '#f5a623', accent2: '#e8891b', textMain: '#f0ede8', muted: '#777', borderC: 'rgba(255,255,255,0.07)' },
+                fontFamily: { sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] }
+            }}
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0c0c0c; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-menu.open { transform: translateX(0); }
+        input, textarea, select { background: #141414; border: 1px solid rgba(255,255,255,0.07); color: #f0ede8; border-radius: 0.75rem; padding: 0.75rem 1rem; font-family: inherit; font-size: 0.875rem; transition: border-color 0.2s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #f5a623; }
+        input::placeholder, textarea::placeholder { color: #555; }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-bg/80 backdrop-blur-md border-b border-borderC">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-accent font-extrabold text-xl tracking-tight uppercase">Reparmax</a>
+        <div class="hidden md:flex items-center gap-8 text-sm text-muted">
+            <a href="servicios.html" class="hover:text-textMain transition">Servicios</a>
+            <a href="proceso.html" class="hover:text-textMain transition">Proceso</a>
+            <a href="opiniones.html" class="hover:text-textMain transition">Opiniones</a>
+            <a href="contacto.html" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">Consultar</a>
+        </div>
+        <button class="md:hidden text-textMain" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+</nav>
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-64 h-full z-50 bg-bg2 border-l border-borderC p-6 pt-20">
+    <button class="absolute top-5 right-5 text-textMain" onclick="document.getElementById('mobileMenu').classList.remove('open')">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="flex flex-col gap-6 text-sm">
+        <a href="index.html" class="text-muted hover:text-textMain transition">Inicio</a>
+        <a href="servicios.html" class="text-muted hover:text-textMain transition">Servicios</a>
+        <a href="proceso.html" class="text-muted hover:text-textMain transition">Proceso</a>
+        <a href="opiniones.html" class="text-muted hover:text-textMain transition">Opiniones</a>
+        <a href="contacto.html" class="text-accent font-semibold">Contacto</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="pt-32 pb-16 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+        <div class="inline-block mb-6 px-5 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-medium tracking-widest uppercase">
+            Contacto
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
+            <span class="text-textMain" data-cms="contacto.hero.heading1">HABLEMOS DE </span><span class="text-accent" data-cms="contacto.hero.heading2">TU PROYECTO</span>
+        </h1>
+        <p class="text-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed" data-cms="contacto.hero.desc">
+            Contanos qué necesitás y te respondemos en menos de 2 horas. Presupuesto gratuito y sin compromiso.
+        </p>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- FORMULARIO -->
+        <div class="bg-bg2 border border-borderC rounded-2xl p-8">
+            <h2 class="text-2xl font-extrabold text-textMain mb-6">Envianos tu consulta</h2>
+            <form id="contactForm" class="space-y-5" onsubmit="handleSubmit(event)">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-muted mb-2">Nombre completo *</label>
+                        <input type="text" name="nombre" required placeholder="Tu nombre">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-muted mb-2">Teléfono *</label>
+                        <input type="tel" name="telefono" required placeholder="221 123-4567">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs text-muted mb-2">Email</label>
+                    <input type="email" name="email" placeholder="tu@email.com" class="w-full">
+                </div>
+                <div>
+                    <label class="block text-xs text-muted mb-2">Servicio que necesitás *</label>
+                    <select name="servicio" required class="w-full">
+                        <option value="">Seleccionar servicio...</option>
+                        <option value="electricidad">Electricidad</option>
+                        <option value="pintura">Pintura</option>
+                        <option value="carpinteria">Madera & Carpintería</option>
+                        <option value="durlock">Durlock & Drywall</option>
+                        <option value="plomeria">Plomería</option>
+                        <option value="reformas">Reformas & Obras</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-muted mb-2">Zona / Barrio *</label>
+                    <input type="text" name="zona" required placeholder="Ej: Centro, Gonnet, City Bell..." class="w-full">
+                </div>
+                <div>
+                    <label class="block text-xs text-muted mb-2">Describí el trabajo que necesitás *</label>
+                    <textarea name="mensaje" required rows="4" placeholder="Contanos los detalles del trabajo: qué necesitás, medidas aproximadas, urgencia, etc." class="w-full resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-accent hover:bg-accent2 text-bg font-semibold py-3.5 rounded-lg transition text-sm">
+                    Enviar Consulta
+                </button>
+                <p class="text-muted text-xs text-center">Te respondemos en menos de 2 horas · Sin compromiso</p>
+            </form>
+            <div id="formSuccess" class="hidden text-center py-12">
+                <div class="w-16 h-16 mx-auto bg-green-500/20 rounded-full flex items-center justify-center text-green-400 mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h3 class="text-textMain font-bold text-xl mb-2">¡Consulta enviada!</h3>
+                <p class="text-muted text-sm">Te vamos a contactar en menos de 2 horas. Gracias por elegirnos.</p>
+            </div>
+        </div>
+
+        <!-- INFO DE CONTACTO -->
+        <div class="space-y-6">
+            <!-- WhatsApp -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">
+                <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-green-500/10 text-green-400">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-textMain font-bold mb-1">WhatsApp</h3>
+                    <p class="text-muted text-sm mb-2" data-cms="contacto.whatsapp.desc">Escribinos y te respondemos al toque</p>
+                    <p class="text-accent font-semibold text-sm" data-cms="contacto.whatsapp.num">+54 221 123-4567</p>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">
+                <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-textMain font-bold mb-1">Teléfono</h3>
+                    <p class="text-muted text-sm mb-2" data-cms="contacto.tel.desc">Llamanos de lunes a sábado de 8 a 20hs</p>
+                    <p class="text-accent font-semibold text-sm" data-cms="contacto.tel.num">+54 221 123-4567</p>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">
+                <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-textMain font-bold mb-1">Email</h3>
+                    <p class="text-muted text-sm mb-2" data-cms="contacto.email.desc">Para consultas detalladas o presupuestos</p>
+                    <p class="text-accent font-semibold text-sm" data-cms="contacto.email.addr">info@reparmax.com.ar</p>
+                </div>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">
+                <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-red-500/10 text-red-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-textMain font-bold mb-1">Zona de Cobertura</h3>
+                    <p class="text-muted text-sm" data-cms="contacto.zona.desc">La Plata, Gonnet, City Bell, Villa Elisa, Tolosa, Los Hornos, Ensenada, Berisso y toda la zona de Gran La Plata.</p>
+                </div>
+            </div>
+
+            <!-- Horarios -->
+            <div class="bg-bg2 border border-borderC rounded-2xl p-7 flex items-start gap-5">
+                <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-textMain font-bold mb-1">Horarios</h3>
+                    <p class="text-muted text-sm" data-cms="contacto.horarios.desc">Lunes a Viernes: 8:00 – 20:00 · Sábados: 8:00 – 14:00 · Urgencias: 24hs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAPA -->
+<section class="py-16 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-extrabold">
+                <span class="text-textMain">NUESTRA </span><span class="text-accent">UBICACIÓN</span>
+            </h2>
+        </div>
+        <div class="bg-bg2 border border-borderC rounded-2xl overflow-hidden" style="height: 400px;">
+            <img data-cms-img="contacto.mapa.img" src="https://placehold.co/1200x400/1a1a1a/f5a623?text=Mapa+–+La+Plata,+Buenos+Aires" alt="Mapa" class="w-full h-full object-cover">
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+            <span class="text-accent font-extrabold text-sm uppercase">Reparmax</span>
+            <span class="text-muted text-xs ml-3">Reparaciones Integrales · La Plata y Gran La Plata</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="admin.html" class="text-muted hover:text-accent text-xs transition">Admin</a>
+            <p class="text-muted text-xs">© 2025 ReparMax. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.remove('hidden');
+}
+
+(function() {
+    const data = JSON.parse(localStorage.getItem('reparmax_cms') || '{}');
+    document.querySelectorAll('[data-cms]').forEach(el => {
+        const key = el.getAttribute('data-cms');
+        if (data[key] !== undefined && data[key] !== '') el.textContent = data[key];
+    });
+    document.querySelectorAll('[data-cms-img]').forEach(el => {
+        const key = el.getAttribute('data-cms-img');
+        if (data[key] !== undefined && data[key] !== '') el.src = data[key];
+    });
+})();
+</script>
+</body>
+</html>
