@@ -123,11 +123,31 @@
     </div>
 </section>
 
+<!-- NOSOTROS -->
+<section id="nosotros" class="py-24 px-6 border-t border-borderC">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">Quiénes somos</p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold mb-4" id="aboutHeading"></h2>
+            <p class="text-muted text-sm max-w-2xl mx-auto leading-relaxed" id="aboutDesc"></p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" id="aboutMissionVision"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="aboutValues"></div>
+        <div class="bg-bg2 border border-borderC rounded-2xl p-8 text-center">
+            <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="text-textMain font-bold text-lg mb-2">Nuestro Equipo</h3>
+            <p class="text-muted text-sm max-w-xl mx-auto leading-relaxed" id="aboutTeam"></p>
+        </div>
+    </div>
+</section>
+
 <!-- GARANTÍAS -->
 <section class="py-24 px-6 border-t border-borderC">
     <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
-            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2">¿Por qué ReparMax?</p>
+            <p class="text-accent text-xs font-semibold tracking-widest uppercase mb-2" id="guaranteesLabel"></p>
             <h2 class="text-4xl sm:text-5xl font-extrabold"><span class="text-textMain">NUESTRAS </span><span class="text-accent">GARANTÍAS</span></h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="guaranteesGrid"></div>
@@ -266,25 +286,23 @@ function renderAll() {
     document.body.style.background = CONFIG.colors.bg;
     document.body.style.color = CONFIG.colors.textMain;
 
-    const isIndex = location.pathname.endsWith('index.html') || location.pathname.endsWith('/') || !location.pathname.includes('.html');
-
     // Nav logo
     document.getElementById('navLogo').textContent = CONFIG.businessName;
 
     // Desktop nav
     document.getElementById('navLinks').innerHTML =
         CONFIG.nav.links.map(l =>
-            '<a href="' + (isIndex ? l.href : l.page) + '" class="hover:text-textMain transition">' + esc(l.label) + '</a>'
+            '<a href="' + l.href + '" class="hover:text-textMain transition">' + esc(l.label) + '</a>'
         ).join('') +
-        '<a href="' + (isIndex ? CONFIG.nav.ctaHref : CONFIG.nav.ctaPage) + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">' + esc(CONFIG.nav.ctaLabel) + '</a>';
+        '<a href="' + CONFIG.nav.ctaHref + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition">' + esc(CONFIG.nav.ctaLabel) + '</a>';
 
     // Mobile nav
     document.getElementById('mobileNavLinks').innerHTML =
-        '<a href="' + (isIndex ? '#hero' : 'index.html') + '" class="text-accent font-semibold" onclick="closeMobile()">Inicio</a>' +
+        '<a href="#hero" class="text-accent font-semibold" onclick="closeMobile()">Inicio</a>' +
         CONFIG.nav.links.map(l =>
-            '<a href="' + (isIndex ? l.href : l.page) + '" class="text-muted hover:text-textMain transition" onclick="closeMobile()">' + esc(l.label) + '</a>'
+            '<a href="' + l.href + '" class="text-muted hover:text-textMain transition" onclick="closeMobile()">' + esc(l.label) + '</a>'
         ).join('') +
-        '<a href="' + (isIndex ? CONFIG.nav.ctaHref : CONFIG.nav.ctaPage) + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center" onclick="closeMobile()">' + esc(CONFIG.nav.ctaLabel) + '</a>';
+        '<a href="' + CONFIG.nav.ctaHref + '" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-center" onclick="closeMobile()">' + esc(CONFIG.nav.ctaLabel) + '</a>';
 
     // Footer
     document.getElementById('footerLeft').innerHTML =
@@ -329,6 +347,34 @@ function renderAll() {
             '<p class="text-muted text-sm leading-relaxed">' + esc(p.desc) + '</p></div>' +
         '</div>'
     ).join('');
+
+    // Nosotros
+    var ab = d.about || CONFIG.about;
+    document.getElementById('aboutHeading').innerHTML = '<span class="text-textMain">' + esc(ab.heading1) + ' </span><span class="text-accent">' + esc(ab.heading2) + '</span>';
+    document.getElementById('aboutDesc').textContent = ab.description;
+    document.getElementById('aboutMissionVision').innerHTML =
+        shimmerCard(
+            '<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">' + icon('star') + '</div>' +
+            '<h3 class="text-textMain font-bold text-lg mb-2">Nuestra Misión</h3>' +
+            '<p class="text-muted text-sm leading-relaxed">' + esc(ab.mission) + '</p>'
+        ) +
+        shimmerCard(
+            '<div class="w-12 h-12 flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">' + icon('check') + '</div>' +
+            '<h3 class="text-textMain font-bold text-lg mb-2">Nuestra Visión</h3>' +
+            '<p class="text-muted text-sm leading-relaxed">' + esc(ab.vision) + '</p>'
+        );
+    document.getElementById('aboutValues').innerHTML = (ab.values || []).map(v =>
+        shimmerCard(
+            '<div class="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-accent/10 text-accent mb-5">' + icon(v.icon) + '</div>' +
+            '<h3 class="text-textMain font-bold mb-2">' + esc(v.title) + '</h3>' +
+            '<p class="text-muted text-sm leading-relaxed">' + esc(v.desc) + '</p>',
+            'text-center'
+        )
+    ).join('');
+    document.getElementById('aboutTeam').textContent = ab.teamDescription;
+
+    // Guarantees label
+    document.getElementById('guaranteesLabel').textContent = '¿Por qué ' + CONFIG.businessName + '?';
 
     // Guarantees
     document.getElementById('guaranteesGrid').innerHTML = d.guarantees.map(g =>

@@ -145,7 +145,7 @@ const CONFIG = {
     }
   ],
 
-  // ─── Gallery (servicios.html) ───
+  // ─── Gallery ───
   gallery: [
     "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+1",
     "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+2",
@@ -260,13 +260,12 @@ const CONFIG = {
   // ─── Nav ───
   nav: {
     links: [
-      { label: "Servicios", href: "#servicios", page: "servicios.html" },
-      { label: "Proceso", href: "#proceso", page: "proceso.html" },
-      { label: "Opiniones", href: "#opiniones", page: "opiniones.html" },
-      { label: "Nosotros", href: "about.html", page: "about.html" }
+      { label: "Servicios", href: "#servicios" },
+      { label: "Proceso", href: "#proceso" },
+      { label: "Nosotros", href: "#nosotros" },
+      { label: "Opiniones", href: "#opiniones" }
     ],
     ctaLabel: "Consultar",
-    ctaHref: "#contacto",
-    ctaPage: "contacto.html"
+    ctaHref: "#contacto"
   }
 };
