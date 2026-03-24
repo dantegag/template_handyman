@@ -35,12 +35,12 @@
     </script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+        body { background: #0b1222; color: #f0ede8; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
         .hero-paths { will-change: contents; contain: strict; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .tag { display: inline-block; padding: 4px 14px; border-radius: 9999px; font-size: 12px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1); color: #f5a623; }
-        .tag:hover { background: rgba(245,166,35,0.1); }
+        .tag { display: inline-block; padding: 4px 14px; border-radius: 9999px; font-size: 12px; font-weight: 500; border: 1px solid rgba(255,255,255,0.1); color: #38bdf8; }
+        .tag:hover { background: rgba(56,189,248,0.1); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
         .faq-item.open .faq-answer { max-height: 300px; }
         .faq-item.open .faq-icon { transform: rotate(45deg); }
@@ -48,11 +48,11 @@
         @keyframes scrollUp { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
         .tst-col-inner { animation: scrollUp linear infinite; }
         .tst-col:hover .tst-col-inner { animation-play-state: paused; }
-        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0c0c0c; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b1222; } ::-webkit-scrollbar-thumb { background: #2a3a52; border-radius: 3px; }
         .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
         .mobile-menu.open { transform: translateX(0); }
-        input, textarea, select { background: #141414; border: 1px solid rgba(255,255,255,0.07); color: #f0ede8; border-radius: 0.75rem; padding: 0.75rem 1rem; font-family: inherit; font-size: 0.875rem; transition: border-color 0.2s; }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: #f5a623; }
+        input, textarea, select { background: #111c32; border: 1px solid rgba(255,255,255,0.07); color: #f0ede8; border-radius: 0.75rem; padding: 0.75rem 1rem; font-family: inherit; font-size: 0.875rem; transition: border-color 0.2s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #38bdf8; }
         input::placeholder, textarea::placeholder { color: #555; }
     </style>
 </head>
@@ -482,7 +482,17 @@ function toggleFaq(btn) {
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 function handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('contactForm').style.display = 'none';
+    var form = document.getElementById('contactForm');
+    var inputs = form.querySelectorAll('input, textarea, select');
+    var entry = { date: new Date().toISOString() };
+    var fields = ['nombre','telefono','email','servicio','zona','mensaje'];
+    inputs.forEach(function(el, i) { if (fields[i]) entry[fields[i]] = el.value; });
+    var key = CONFIG.slug + '_consultas';
+    var list = [];
+    try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
+    list.unshift(entry);
+    localStorage.setItem(key, JSON.stringify(list));
+    form.style.display = 'none';
     document.getElementById('formSuccess').classList.remove('hidden');
 }
 

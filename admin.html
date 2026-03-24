@@ -18,32 +18,32 @@
     <script>document.title = 'Admin – ' + CONFIG.businessName;</script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0c0c0c; color: #f0ede8; font-family: 'DM Sans', sans-serif; }
-        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0c0c0c; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        input, textarea, select { background: #1a1a1a; border: 1px solid rgba(255,255,255,0.1); color: #f0ede8; border-radius: 0.5rem; padding: 0.6rem 0.85rem; font-family: inherit; font-size: 0.8rem; transition: border-color 0.2s; width: 100%; }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: #f5a623; }
+        body { background: #0b1222; color: #f0ede8; font-family: 'DM Sans', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0b1222; } ::-webkit-scrollbar-thumb { background: #2a3a52; border-radius: 3px; }
+        input, textarea, select { background: #182540; border: 1px solid rgba(255,255,255,0.1); color: #f0ede8; border-radius: 0.5rem; padding: 0.6rem 0.85rem; font-family: inherit; font-size: 0.8rem; transition: border-color 0.2s; width: 100%; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #38bdf8; }
         textarea { resize: vertical; min-height: 55px; }
         .tab-btn { padding: 8px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
-        .tab-btn.active { background: #f5a623; color: #0c0c0c; }
+        .tab-btn.active { background: #38bdf8; color: #0b1222; }
         .tab-btn:not(.active) { color: #777; border-color: rgba(255,255,255,0.07); }
         .tab-btn:not(.active):hover { color: #f0ede8; border-color: rgba(255,255,255,0.15); }
         .panel { display: none; } .panel.active { display: block; }
         .fl { font-size: 11px; color: #777; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 5px; display: block; }
         .fg { margin-bottom: 12px; }
-        .card { background: #141414; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px; margin-bottom: 12px; position: relative; }
+        .card { background: #111c32; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px; margin-bottom: 12px; position: relative; }
         .card:hover { border-color: rgba(255,255,255,0.12); }
         .del-btn { position: absolute; top: 12px; right: 12px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #ef4444; width: 28px; height: 28px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
         .del-btn:hover { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.4); }
         .add-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border: 2px dashed rgba(255,255,255,0.1); border-radius: 12px; color: #777; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; background: transparent; }
-        .add-btn:hover { border-color: #f5a623; color: #f5a623; }
-        .toast { position: fixed; bottom: 24px; right: 24px; background: #f5a623; color: #0c0c0c; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; transform: translateY(100px); opacity: 0; transition: all 0.3s ease; z-index: 100; }
+        .add-btn:hover { border-color: #38bdf8; color: #38bdf8; }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #38bdf8; color: #0b1222; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; transform: translateY(100px); opacity: 0; transition: all 0.3s ease; z-index: 100; }
         .toast.show { transform: translateY(0); opacity: 1; }
-        .login-screen { position: fixed; inset: 0; z-index: 200; background: #0c0c0c; display: flex; align-items: center; justify-content: center; }
-        .section-title { font-size: 13px; font-weight: 700; color: #f5a623; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .login-screen { position: fixed; inset: 0; z-index: 200; background: #0b1222; display: flex; align-items: center; justify-content: center; }
+        .section-title { font-size: 13px; font-weight: 700; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07); }
         .icon-select { display: flex; flex-wrap: wrap; gap: 6px; }
         .icon-opt { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
-        .icon-opt:hover, .icon-opt.active { border-color: #f5a623; background: rgba(245,166,35,0.1); }
-        .icon-opt svg { width: 18px; height: 18px; stroke: #f5a623; fill: none; stroke-width: 2; }
+        .icon-opt:hover, .icon-opt.active { border-color: #38bdf8; background: rgba(56,189,248,0.1); }
+        .icon-opt svg { width: 18px; height: 18px; stroke: #38bdf8; fill: none; stroke-width: 2; }
         .color-opt { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
         .color-opt:hover, .color-opt.active { border-color: white; transform: scale(1.15); }
     </style>
@@ -92,6 +92,8 @@
             <button class="tab-btn" onclick="switchTab('faq',this)">FAQ</button>
             <button class="tab-btn" onclick="switchTab('contact',this)">Contacto</button>
             <button class="tab-btn" onclick="switchTab('about',this)">Nosotros</button>
+            <button class="tab-btn" onclick="switchTab('consultas',this)">Consultas</button>
+            <button class="tab-btn" onclick="switchTab('settings',this)">Ajustes</button>
         </div>
 
         <!-- ═══ HERO / GENERAL ═══ -->
@@ -209,6 +211,37 @@
             </div>
         </div>
 
+        <!-- ═══ CONSULTAS ═══ -->
+        <div id="p-consultas" class="panel">
+            <div class="flex items-center justify-between mb-4">
+                <div class="section-title mb-0" style="margin-bottom:0;border:0;padding:0">Consultas Recibidas</div>
+                <div class="flex gap-2">
+                    <span class="text-muted text-xs" id="consultasCount"></span>
+                    <button onclick="clearConsultas()" class="text-red-400 hover:text-red-300 text-xs font-semibold transition px-3 py-1.5 rounded-lg border border-red-400/20 hover:border-red-400/40 cursor-pointer">Borrar todas</button>
+                </div>
+            </div>
+            <div id="consultasList"></div>
+            <div id="consultasEmpty" class="hidden text-center py-16">
+                <div class="w-16 h-16 mx-auto bg-accent/10 rounded-full flex items-center justify-center text-accent mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                </div>
+                <p class="text-muted text-sm">No hay consultas todavía.</p>
+                <p class="text-muted text-xs mt-1">Las consultas enviadas desde el formulario de contacto aparecerán acá.</p>
+            </div>
+        </div>
+
+        <!-- ═══ AJUSTES ═══ -->
+        <div id="p-settings" class="panel">
+            <div class="card">
+                <div class="section-title">Cambiar Contraseña</div>
+                <div class="fg"><label class="fl">Contraseña actual</label><input type="password" id="set-oldpass" placeholder="Ingresá la contraseña actual"></div>
+                <div class="fg"><label class="fl">Nueva contraseña</label><input type="password" id="set-newpass" placeholder="Ingresá la nueva contraseña"></div>
+                <div class="fg"><label class="fl">Confirmar nueva contraseña</label><input type="password" id="set-newpass2" placeholder="Repetí la nueva contraseña"></div>
+                <button onclick="changePassword()" class="bg-accent hover:bg-accent2 text-bg font-semibold px-5 py-2 rounded-lg transition text-sm cursor-pointer mt-2">Cambiar Contraseña</button>
+                <p id="passMsg" class="text-xs mt-3 hidden"></p>
+            </div>
+        </div>
+
         <div id="p-about" class="panel">
             <div class="card">
                 <div class="section-title">Hero de Nosotros</div>
@@ -314,11 +347,12 @@ if (sessionStorage.getItem(CONFIG.slug + '_logged') === '1') {
 // TABS
 // ═══════════════════════════════════════
 function switchTab(name, btn) {
-    collectFields();
+    if (name !== 'consultas' && name !== 'settings') collectFields();
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('p-' + name).classList.add('active');
     btn.classList.add('active');
+    if (name === 'consultas') renderConsultas();
 }
 
 // ═══════════════════════════════════════
@@ -674,10 +708,100 @@ function scrollToBottom(id) { setTimeout(() => { const el = document.getElementB
 document.addEventListener('keydown', e => { if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); saveAll(); } });
 
 // ═══════════════════════════════════════
+// CONSULTAS
+// ═══════════════════════════════════════
+function getConsultas() {
+    try { return JSON.parse(localStorage.getItem(CONFIG.slug + '_consultas') || '[]'); } catch(e) { return []; }
+}
+
+function renderConsultas() {
+    var list = getConsultas();
+    var countEl = document.getElementById('consultasCount');
+    var listEl = document.getElementById('consultasList');
+    var emptyEl = document.getElementById('consultasEmpty');
+    countEl.textContent = list.length + ' consulta' + (list.length !== 1 ? 's' : '');
+    if (!list.length) {
+        listEl.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        return;
+    }
+    emptyEl.classList.add('hidden');
+    listEl.innerHTML = list.map(function(c, i) {
+        var d = new Date(c.date);
+        var fecha = d.toLocaleDateString('es-AR') + ' ' + d.toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
+        return '<div class="card">' +
+            '<button class="del-btn" onclick="removeConsulta(' + i + ')">&times;</button>' +
+            '<div class="flex items-center gap-3 mb-3">' +
+                '<span class="text-accent font-bold text-sm">' + esc(c.nombre || 'Sin nombre') + '</span>' +
+                '<span class="text-muted text-xs">' + fecha + '</span>' +
+            '</div>' +
+            '<div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3 text-xs">' +
+                '<div><span class="text-muted">Tel:</span> <span class="text-textMain">' + esc(c.telefono || '-') + '</span></div>' +
+                '<div><span class="text-muted">Email:</span> <span class="text-textMain">' + esc(c.email || '-') + '</span></div>' +
+                '<div><span class="text-muted">Servicio:</span> <span class="text-textMain">' + esc(c.servicio || '-') + '</span></div>' +
+            '</div>' +
+            '<div class="text-xs mb-2"><span class="text-muted">Zona:</span> <span class="text-textMain">' + esc(c.zona || '-') + '</span></div>' +
+            '<div class="bg-bg3 rounded-lg p-3 text-sm text-textMain">' + esc(c.mensaje || '-') + '</div>' +
+        '</div>';
+    }).join('');
+}
+
+function removeConsulta(i) {
+    var list = getConsultas();
+    list.splice(i, 1);
+    localStorage.setItem(CONFIG.slug + '_consultas', JSON.stringify(list));
+    renderConsultas();
+    showToast('Consulta eliminada');
+}
+
+function clearConsultas() {
+    if (!confirm('¿Borrar todas las consultas?')) return;
+    localStorage.removeItem(CONFIG.slug + '_consultas');
+    renderConsultas();
+    showToast('Consultas borradas');
+}
+
+// ═══════════════════════════════════════
+// PASSWORD CHANGE
+// ═══════════════════════════════════════
+function changePassword() {
+    var oldPass = document.getElementById('set-oldpass').value;
+    var newPass = document.getElementById('set-newpass').value;
+    var newPass2 = document.getElementById('set-newpass2').value;
+    var msgEl = document.getElementById('passMsg');
+    var stored = localStorage.getItem(CONFIG.slug + '_admin_pass') || 'admin';
+
+    msgEl.classList.remove('hidden');
+    if (oldPass !== stored) {
+        msgEl.className = 'text-xs mt-3 text-red-400';
+        msgEl.textContent = 'La contraseña actual es incorrecta.';
+        return;
+    }
+    if (!newPass || newPass.length < 4) {
+        msgEl.className = 'text-xs mt-3 text-red-400';
+        msgEl.textContent = 'La nueva contraseña debe tener al menos 4 caracteres.';
+        return;
+    }
+    if (newPass !== newPass2) {
+        msgEl.className = 'text-xs mt-3 text-red-400';
+        msgEl.textContent = 'Las contraseñas nuevas no coinciden.';
+        return;
+    }
+    localStorage.setItem(CONFIG.slug + '_admin_pass', newPass);
+    document.getElementById('set-oldpass').value = '';
+    document.getElementById('set-newpass').value = '';
+    document.getElementById('set-newpass2').value = '';
+    msgEl.className = 'text-xs mt-3 text-green-400';
+    msgEl.textContent = 'Contraseña cambiada exitosamente.';
+    showToast('Contraseña actualizada');
+}
+
+// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 loadData();
 renderAllFields();
+renderConsultas();
 </script>
 </body>
 </html>

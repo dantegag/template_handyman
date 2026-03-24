@@ -1,195 +1,195 @@
 const CONFIG = {
   // ─── Identity ───
-  businessName: "ReparMax",
-  tagline: "Reparaciones Integrales",
-  location: "La Plata y Gran La Plata",
-  slug: "reparmax",
+  businessName: "Soluciones Integrales",
+  tagline: "Construcción, Pintura y Plomería",
+  location: "CABA y alrededores",
+  slug: "soluciones-integrales",
 
   // ─── Google Maps ───
-  googleMapsUrl: "",
-  googleMapsEmbed: "",
+  googleMapsUrl: "https://maps.app.goo.gl/Z3QnzUuD1qDrRdve6",
+  googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13135!2d-58.4212746!3d-34.5853766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5811475bcaf%3A0xce34f3fb7dfbd279!2sSoluciones%20Integrales!5e0!3m2!1ses!2sar",
 
   // ─── Theme Colors ───
   colors: {
-    accent: "#f5a623",
-    accent2: "#e8891b",
-    bg: "#0c0c0c",
-    bg2: "#141414",
-    bg3: "#1a1a1a",
+    accent: "#38bdf8",
+    accent2: "#0ea5e9",
+    bg: "#0b1222",
+    bg2: "#111c32",
+    bg3: "#182540",
     textMain: "#f0ede8",
-    muted: "#777"
+    muted: "#8892a4"
   },
 
   // ─── Social Media ───
   socialMedia: {
     instagram: "",
-    facebook: "",
+    facebook: "https://www.facebook.com/solucionesintegrales.com.ar/",
     tiktok: "",
     youtube: ""
   },
 
   // ─── SEO / Meta ───
   meta: {
-    title: "ReparMax – Reparaciones Integrales en La Plata",
-    description: "Reparaciones profesionales en La Plata y Gran La Plata: electricidad, pintura, carpintería, durlock, plomería y reformas."
+    title: "Soluciones Integrales – Construcción, Pintura y Plomería en Buenos Aires",
+    description: "Profesionales con 30 años de experiencia en construcción, pintura, plomería y reformas integrales en CABA y alrededores. Presupuesto sin cargo."
   },
 
   // ─── Hero ───
   hero: {
-    badge: "Reparaciones Profesionales · La Plata y Gran La Plata",
-    heading1: "TODO LO QUE TU",
-    heading2: "HOGAR NECESITA",
-    subtitle: "Electricidad · Pintura · Madera · Durlock · Plomería",
-    description: "Reparaciones en La Plata y Gran La Plata: profesionales especializados en cada área. Trabajo prolijo, puntualidad y garantía escrita en todos nuestros trabajos."
+    badge: "30 Años de Experiencia · CABA y alrededores",
+    heading1: "SOLUCIONES PARA",
+    heading2: "TU HOGAR Y NEGOCIO",
+    subtitle: "Construcción · Pintura · Plomería · Albañilería · Impermeabilización",
+    description: "Somos un grupo de profesionales capacitados para brindar soluciones inteligentes en cualquier rubro de la construcción. Presupuesto sin cargo y garantía de 30 días."
   },
 
   // ─── Stats ───
   stats: [
-    { value: "+500", label: "Trabajos Realizados" },
-    { value: "8+", label: "Años de Experiencia" },
-    { value: "100%", label: "Estimación Garantizada" }
+    { value: "30+", label: "Años de Experiencia" },
+    { value: "24hs", label: "Urgencias" },
+    { value: "100%", label: "Presupuesto Garantizado" }
   ],
 
   // ─── Services ───
-  serviciosSubtitle: "Profesionales especializados en cada área para darte la mejor solución, todo en un solo lugar.",
+  serviciosSubtitle: "Profesionales capacitados para brindar soluciones inteligentes en cualquier rubro de la construcción.",
   services: [
     {
-      title: "Electricidad",
-      desc: "Instalaciones y reparaciones eléctricas en La Plata para hogar o comercio. Certificaciones y materiales de primera calidad.",
-      icon: "bolt",
-      tags: "Tableros, Iluminación, Enchufes, Cableado",
-      detailDesc: "Instalaciones eléctricas completas y reparaciones para hogares y comercios en La Plata. Trabajamos con materiales certificados y cumplimos todas las normativas vigentes para garantizar la seguridad de tu familia y tu negocio.",
+      title: "Construcción & Arquitectura",
+      desc: "Obras nuevas, reformas, ampliaciones y construcción en seco. Steel framing, hormigón armado y piletas.",
+      icon: "house",
+      tags: "Obras nuevas, Reformas, Steel framing, Piletas",
+      detailDesc: "Construcción integral con más de 30 años de experiencia. Obras nuevas, reformas completas, ampliaciones, steel framing, hormigón armado y construcción de piletas.",
       bulletItems: [
-        "Instalación y reparación de tableros eléctricos",
-        "Cableado completo y parcial",
-        "Iluminación interior y exterior LED",
-        "Colocación de enchufes, llaves y tomas",
-        "Puesta a tierra y disyuntores"
+        "Obras nuevas y ampliaciones",
+        "Hormigón armado y piletas",
+        "Steel framing y aislación térmica/acústica",
+        "Planos y diseño arquitectónico",
+        "Home staging y decoración"
       ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Electricidad"
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Construcción"
     },
     {
       title: "Pintura",
-      desc: "Pintura interior y exterior en La Plata y zona. Preparación de superficies, trazados y acabados con pinturas de alta durabilidad.",
+      desc: "Pintura interior y exterior, impermeabilización, tratamiento de maderas y pintura de techos y fachadas.",
       icon: "paint",
-      tags: "Interior, Exterior, Texturado, Impermeabilizante",
-      detailDesc: "Pintura profesional para interiores y exteriores. Preparamos las superficies con dedicación, utilizamos pinturas de alta durabilidad y garantizamos acabados impecables que transforman cualquier ambiente.",
+      tags: "Interior, Exterior, Impermeabilización, Techos",
+      detailDesc: "Pintura profesional para interiores y exteriores. Impermeabilización, pintura de piletas, trabajo en altura, tratamiento de maderas y fachadas.",
       bulletItems: [
-        "Pintura interior (latex, satinado, mate)",
-        "Pintura exterior resistente al clima",
-        "Texturados y revestimientos decorativos",
-        "Impermeabilización de paredes y techos",
-        "Reparación de humedad y fisuras"
+        "Pintura interior y exterior",
+        "Impermeabilización de techos y paredes",
+        "Pintura de piletas y fachadas",
+        "Tratamiento de maderas",
+        "Trabajos en altura"
       ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Pintura"
-    },
-    {
-      title: "Madera & Carpintería",
-      desc: "Carpinteros en La Plata: reparación y fabricación de muebles, puertas, ventanas y aberturas con terminaciones impecables.",
-      icon: "wood",
-      tags: "Puertas, Muebles, Pisos, Ventanas",
-      detailDesc: "Carpinteros profesionales en La Plata especializados en reparación y fabricación de muebles, puertas, ventanas y todo tipo de trabajos en madera con terminaciones de alta calidad.",
-      bulletItems: [
-        "Reparación y ajuste de puertas y ventanas",
-        "Fabricación de muebles a medida",
-        "Colocación y reparación de pisos de madera",
-        "Restauración de muebles antiguos",
-        "Instalación de placards y vestidores"
-      ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Carpintería"
-    },
-    {
-      title: "Durlock & Drywall",
-      desc: "Durlock y drywall en La Plata: tabiques divisorios, cielorrasos, revestimientos y estructuras de yeso con acabado perfecto.",
-      icon: "grid",
-      tags: "Tabiques, Cielorrasos, Nichos, Molduras",
-      detailDesc: "Especialistas en construcción en seco. Creamos divisiones, cielorrasos, nichos y revestimientos con placas de yeso de máxima calidad y acabado perfecto.",
-      bulletItems: [
-        "Tabiques divisorios y medianeras",
-        "Cielorrasos lisos y desmontables",
-        "Nichos decorativos con iluminación",
-        "Molduras y detalles arquitectónicos",
-        "Revestimientos resistentes a humedad"
-      ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Durlock"
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Pintura"
     },
     {
       title: "Plomería",
-      desc: "Plomeros en La Plata: reparación de pérdidas, desobstrucciones, instalación de sanitarios y griferías en el día.",
+      desc: "Instalación de termotanques, reparaciones, desobstrucciones 24hs, detección de pérdidas y conexión de artefactos.",
       icon: "pipe",
-      tags: "Pérdidas, Cañerías, Sanitarios, Desagües",
-      detailDesc: "Plomeros profesionales con respuesta rápida. Solucionamos pérdidas, desobstrucciones, instalaciones de sanitarios y todo tipo de reparaciones de cañerías.",
+      tags: "Termotanques, Desobstrucciones, Pérdidas, Artefactos",
+      detailDesc: "Plomeros con respuesta rápida y servicio de emergencia 24hs. Instalación de termotanques, calefones solares, reparaciones y desobstrucciones.",
       bulletItems: [
-        "Reparación de pérdidas de agua y gas",
-        "Desobstrucción de cañerías y desagües",
-        "Instalación de sanitarios y griferías",
-        "Tendido de cañerías nuevas",
-        "Instalación de termotanques y calefones"
+        "Instalación de termotanques y calefones",
+        "Desobstrucciones de emergencia 24hs",
+        "Detección y reparación de pérdidas",
+        "Conexión de artefactos y griferías",
+        "Plomería para obras nuevas"
       ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Plomería"
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Plomería"
     },
     {
-      title: "Reformas & Obras",
-      desc: "Refacciones y reformas en La Plata: baños, cocinas y ambientes. Albañilería y obras integrales en Gran La Plata.",
-      icon: "house",
-      tags: "Baños, Cocinas, Revestimientos, Pisos",
-      detailDesc: "Reformas integrales en La Plata y Gran La Plata. Renovamos baños, cocinas y ambientes completos con albañilería de primera, coordinando todos los gremios en un solo presupuesto.",
+      title: "Albañilería",
+      desc: "Mampostería, hormigón armado, reformas de baños y cocinas, colocación de pisos y revestimientos.",
+      icon: "grid",
+      tags: "Mampostería, Hormigón, Pisos, Revestimientos",
+      detailDesc: "Albañilería general y especializada. Mampostería, hormigón armado, reformas de baños y cocinas, colocación de pisos y revestimientos cerámicos.",
       bulletItems: [
+        "Mampostería y hormigón armado",
         "Reformas completas de baños y cocinas",
         "Colocación de pisos y revestimientos",
-        "Albañilería general y mampostería",
-        "Ampliaciones y construcción en seco",
-        "Coordinación integral de gremios"
+        "Construcción de piletas",
+        "Reparaciones generales"
       ],
-      image: "https://placehold.co/600x400/1a1a1a/f5a623?text=Reformas"
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Albañilería"
+    },
+    {
+      title: "Durlock & Construcción en Seco",
+      desc: "Tabiques divisorios, cielorrasos, revestimientos y aislación térmica y acústica con placas de yeso.",
+      icon: "wrench",
+      tags: "Tabiques, Cielorrasos, Aislación, Revestimientos",
+      detailDesc: "Construcción en seco con placas de yeso. Tabiques divisorios, cielorrasos, aislación térmica y acústica, y revestimientos.",
+      bulletItems: [
+        "Tabiques divisorios y medianeras",
+        "Cielorrasos lisos y desmontables",
+        "Aislación térmica y acústica",
+        "Revestimientos decorativos",
+        "Steel framing completo"
+      ],
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Durlock"
+    },
+    {
+      title: "Impermeabilización",
+      desc: "Impermeabilización de techos, terrazas, paredes y piletas. Soluciones definitivas contra la humedad.",
+      icon: "shield",
+      tags: "Techos, Terrazas, Paredes, Piletas",
+      detailDesc: "Impermeabilización profesional para techos, terrazas, paredes y piletas. Soluciones definitivas contra filtraciones y humedad.",
+      bulletItems: [
+        "Impermeabilización de techos y terrazas",
+        "Tratamiento de paredes con humedad",
+        "Impermeabilización de piletas",
+        "Membrana líquida y asfáltica",
+        "Pintura impermeabilizante"
+      ],
+      image: "https://placehold.co/600x400/182540/38bdf8?text=Impermeabilización"
     }
   ],
 
   // ─── Gallery ───
   gallery: [
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+1",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+2",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+3",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+4",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+5",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+6",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+7",
-    "https://placehold.co/300x300/1a1a1a/f5a623?text=Trabajo+8"
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+1",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+2",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+3",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+4",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+5",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+6",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+7",
+    "https://placehold.co/300x300/182540/38bdf8?text=Trabajo+8"
   ],
 
   // ─── Process ───
   procesoDesc: "Desde el primer mensaje hasta la entrega final, todo bajo control y sin sorpresas.",
   process: [
     { title: "Contacto", desc: "Nos escribís por WhatsApp o llamás. Contanos qué necesitás y acordamos una visita sin compromiso." },
-    { title: "Diagnóstico Gratuito", desc: "Visitamos el lugar, analizamos el trabajo y te entregamos un presupuesto detallado sin cargo." },
-    { title: "Ejecución", desc: "Arrancamos en la fecha pactada con materiales de calidad y personal capacitado. Cero impacto en tu rutina." },
-    { title: "Garantía Escrita", desc: "Entregamos el trabajo con garantía documentada. Si algo falla, volvemos sin costo adicional." }
+    { title: "Presupuesto Gratis", desc: "Visitamos el lugar, analizamos el trabajo y te entregamos un presupuesto detallado sin cargo." },
+    { title: "Ejecución", desc: "Arrancamos en la fecha pactada con materiales de calidad y personal capacitado." },
+    { title: "Garantía 30 Días", desc: "Entregamos el trabajo con 30 días de garantía en mano de obra. Si algo falla, volvemos sin costo." }
   ],
   processDetail: [
     {
       title: "Contacto Inicial",
-      desc: "Nos contactás por WhatsApp, teléfono o a través del formulario de contacto. Contanos qué necesitás: puede ser una reparación puntual, una instalación nueva o una reforma completa. Respondemos en menos de 2 horas.",
-      image: "https://placehold.co/700x300/1a1a1a/f5a623?text=Contacto+Inicial"
+      desc: "Nos contactás por WhatsApp, teléfono o a través del formulario de contacto. Contanos qué necesitás: puede ser una reparación puntual, una instalación nueva o una reforma completa.",
+      image: "https://placehold.co/700x300/182540/38bdf8?text=Contacto+Inicial"
     },
     {
-      title: "Visita y Diagnóstico Gratuito",
-      desc: "Coordinamos una visita sin cargo a tu domicilio en La Plata o Gran La Plata. Nuestros profesionales evalúan el trabajo in situ, toman medidas y te asesoran sobre la mejor solución. Sin compromiso.",
-      image: "https://placehold.co/700x300/1a1a1a/f5a623?text=Diagnóstico+Gratuito"
+      title: "Visita y Presupuesto Sin Cargo",
+      desc: "Coordinamos una visita sin cargo a tu domicilio en CABA y alrededores. Nuestros profesionales evalúan el trabajo in situ y te asesoran sobre la mejor solución.",
+      image: "https://placehold.co/700x300/182540/38bdf8?text=Presupuesto+Gratis"
     },
     {
       title: "Presupuesto Detallado",
-      desc: "Te enviamos un presupuesto por escrito con el detalle de materiales, mano de obra, plazos de ejecución y forma de pago. Todo claro y sin letras chicas. Si aceptás, coordinamos la fecha de inicio.",
-      image: "https://placehold.co/700x300/1a1a1a/f5a623?text=Presupuesto+Detallado"
+      desc: "Te enviamos un presupuesto por escrito con el detalle de materiales, mano de obra, plazos de ejecución y forma de pago. Todo claro y sin letras chicas. Aceptamos tarjeta de crédito.",
+      image: "https://placehold.co/700x300/182540/38bdf8?text=Presupuesto+Detallado"
     },
     {
       title: "Ejecución del Trabajo",
       desc: "Arrancamos en la fecha pactada con materiales de calidad y personal capacitado. Mantenemos tu espacio limpio y ordenado. Te mantenemos informado del avance en todo momento.",
-      image: "https://placehold.co/700x300/1a1a1a/f5a623?text=Ejecución+del+Trabajo"
+      image: "https://placehold.co/700x300/182540/38bdf8?text=Ejecución+del+Trabajo"
     },
     {
-      title: "Entrega y Garantía Escrita",
-      desc: "Entregamos el trabajo terminado con una revisión conjunta. Te damos un certificado de garantía por escrito. Si algo no te convence o falla, volvemos a resolverlo sin costo adicional.",
-      image: "https://placehold.co/700x300/1a1a1a/f5a623?text=Garantía+Escrita"
+      title: "Entrega y Garantía de 30 Días",
+      desc: "Entregamos el trabajo terminado con una revisión conjunta. Todos nuestros trabajos incluyen 30 días de garantía en mano de obra. Si algo falla, volvemos sin costo adicional.",
+      image: "https://placehold.co/700x300/182540/38bdf8?text=Garantía+30+Días"
     }
   ],
 
@@ -211,47 +211,47 @@ const CONFIG = {
 
   // ─── Testimonials ───
   testimonials: [
-    { text: "Hicieron el cielorraso de durlock en tiempo récord y con un terminado impecable. Súper recomendables, ya los contraté para la cocina.", name: "Marcela R.", loc: "Centro, La Plata", color: "red", initial: "M", service: "Durlock" },
-    { text: "Renovaron toda la instalación eléctrica del local. Trabajo prolijo, sin cortes innecesarios y con certificado de garantía.", name: "Javier C.", loc: "Tolosa, La Plata", color: "purple", initial: "J", service: "Electricidad" },
-    { text: "Pintaron todo el departamento en dos días. Puntualísimos, buen precio y un resultado que superó todas mis expectativas.", name: "Laura P.", loc: "Gonnet, Gran La Plata", color: "orange", initial: "L", service: "Pintura" },
-    { text: "Nos arreglaron una pérdida de agua que otros plomeros no pudieron solucionar. Vinieron rápido y lo resolvieron en el día.", name: "Roberto M.", loc: "City Bell", color: "blue", initial: "R", service: "Plomería" },
-    { text: "Reformaron el baño completo: plomería, revestimientos, mueble y grifería. Coordinaron todo y quedó espectacular.", name: "Ana S.", loc: "La Plata Centro", color: "green", initial: "A", service: "Reformas" },
-    { text: "Hicieron todas las puertas de madera del departamento nuevo. Ajuste perfecto, pintadas y con herrajes de calidad.", name: "Diego F.", loc: "Ensenada", color: "yellow", initial: "D", service: "Carpintería" },
-    { text: "Excelente servicio de principio a fin. Presupuesto claro, materiales de calidad y cumplieron con los tiempos. Los voy a seguir llamando.", name: "Carolina V.", loc: "Los Hornos", color: "pink", initial: "C", service: "Electricidad" },
-    { text: "Impermeabilizaron toda la terraza y pintaron el frente. Ya pasaron dos temporadas de lluvia y cero filtraciones. Garantía real.", name: "Pablo G.", loc: "Villa Elisa", color: "teal", initial: "P", service: "Pintura" },
-    { text: "Armaron un cielorraso con iluminación indirecta que quedó increíble. Muy detallistas con el diseño y la terminación. Recomendado 100%.", name: "Valeria T.", loc: "Berisso", color: "indigo", initial: "V", service: "Durlock" }
+    { text: "Impermeabilizaron la terraza completa y pintaron todo el frente. Ya pasaron dos temporadas de lluvia y cero filtraciones. Garantía real.", name: "Marcela R.", loc: "Palermo, CABA", color: "red", initial: "M", service: "Impermeabilización" },
+    { text: "Reformaron el baño completo: plomería, revestimientos y grifería. Coordinaron todo y quedó espectacular. Muy profesionales.", name: "Javier C.", loc: "Belgrano, CABA", color: "purple", initial: "J", service: "Construcción" },
+    { text: "Pintaron todo el departamento en tiempo récord. Puntualísimos, buen precio y un resultado que superó todas mis expectativas.", name: "Laura P.", loc: "Recoleta, CABA", color: "orange", initial: "L", service: "Pintura" },
+    { text: "Nos arreglaron una pérdida de agua que otros plomeros no pudieron solucionar. Vinieron con el servicio de urgencia y lo resolvieron en el día.", name: "Roberto M.", loc: "Vicente López", color: "blue", initial: "R", service: "Plomería" },
+    { text: "Hicieron la pileta completa con hormigón armado. Excelente terminación y cumplieron con los plazos. Los recomiendo totalmente.", name: "Ana S.", loc: "San Isidro", color: "green", initial: "A", service: "Construcción" },
+    { text: "Instalaron el termotanque y arreglaron toda la grifería del baño. Rápidos, prolijos y con garantía de 30 días. Muy conformes.", name: "Diego F.", loc: "Núñez, CABA", color: "yellow", initial: "D", service: "Plomería" },
+    { text: "Excelente servicio de principio a fin. Presupuesto sin cargo, materiales de calidad y cumplieron con los tiempos. Los voy a seguir llamando.", name: "Carolina V.", loc: "Olivos", color: "pink", initial: "C", service: "Construcción" },
+    { text: "Hicieron los tabiques de durlock y la aislación acústica del departamento. Trabajo impecable y muy buena atención.", name: "Pablo G.", loc: "Caballito, CABA", color: "teal", initial: "P", service: "Durlock" },
+    { text: "Pintaron el frente del edificio trabajando en altura. Profesionales, seguros y con un resultado excelente. 100% recomendados.", name: "Valeria T.", loc: "Morón", color: "indigo", initial: "V", service: "Pintura" }
   ],
 
   // ─── FAQ ───
   faq: [
-    { q: "¿Hacen presupuesto sin cargo?", a: "Sí. El presupuesto es gratuito y sin compromiso. Visitamos el lugar en La Plata o Gran La Plata, evaluamos el trabajo y te pasamos un detalle por escrito." },
-    { q: "¿Trabajan en toda La Plata y Gran La Plata?", a: "Sí. Atendemos La Plata capital y toda la zona de Gran La Plata. Sin costo adicional por desplazamiento dentro del área." },
-    { q: "¿Dan garantía por escrito?", a: "Sí. Todos los trabajos se entregan con garantía documentada. Si algo falla, volvemos a resolverlo sin costo adicional." },
-    { q: "¿Cuánto tarda el presupuesto?", a: "Respondemos en menos de 2 horas. Coordinamos la visita en La Plata o Gran La Plata y te lo enviamos por escrito." }
+    { q: "¿Hacen presupuesto sin cargo?", a: "Sí. El presupuesto es gratuito y sin compromiso. Visitamos el lugar en CABA y alrededores, evaluamos el trabajo y te pasamos un detalle por escrito." },
+    { q: "¿En qué zonas trabajan?", a: "Atendemos CABA y alrededores. Sin costo adicional por desplazamiento dentro del área." },
+    { q: "¿Dan garantía?", a: "Sí. Todos los trabajos incluyen 30 días de garantía en mano de obra. Si algo falla, volvemos a resolverlo sin costo adicional." },
+    { q: "¿Atienden urgencias?", a: "Sí. Contamos con servicio de emergencia 24hs para desobstrucciones y problemas de plomería urgentes. Llamanos y te asistimos." }
   ],
 
   // ─── Contact ───
   contact: {
-    whatsapp: { desc: "Escribinos y te respondemos al toque", num: "+54 221 123-4567" },
-    tel: { desc: "Lunes a sábado de 8 a 20hs", num: "+54 221 123-4567" },
-    email: { desc: "Para consultas detalladas", addr: "info@reparmax.com.ar" },
-    zona: "La Plata, Gonnet, City Bell, Villa Elisa, Tolosa, Los Hornos, Ensenada, Berisso y toda la zona de Gran La Plata.",
-    horarios: "Lunes a Viernes: 8:00 – 20:00 · Sábados: 8:00 – 14:00 · Urgencias: 24hs"
+    whatsapp: { desc: "Escribinos y te respondemos al toque", num: "+54 9 11 3245-2445" },
+    tel: { desc: "Lunes a sábado de 8 a 18hs", num: "+54 11 3276-0440" },
+    email: { desc: "Para consultas detalladas", addr: "solucionesintegrales.caba@gmail.com" },
+    zona: "CABA y alrededores.",
+    horarios: "Lunes a Viernes: 8:00 – 18:00 · Sábados: 8:00 – 14:00 · Urgencias: 24hs"
   },
 
   // ─── About ───
   about: {
     heading1: "CONOCÉ",
     heading2: "NUESTRA HISTORIA",
-    description: "Somos un equipo de profesionales especializados en reparaciones y mantenimiento del hogar. Con años de experiencia en La Plata y Gran La Plata, nos dedicamos a brindar soluciones integrales con calidad, puntualidad y garantía escrita en cada trabajo.",
-    mission: "Brindar un servicio integral, confiable y accesible para el mantenimiento y mejora de tu hogar, con profesionales capacitados y materiales de primera calidad.",
-    vision: "Ser la empresa de referencia en reparaciones del hogar en La Plata y Gran La Plata, reconocida por la calidad de nuestro trabajo y la satisfacción de nuestros clientes.",
+    description: "Somos un grupo de profesionales capacitados para brindar soluciones inteligentes en cualquier rubro de la construcción. Con más de 30 años de experiencia en CABA y alrededores, ofrecemos servicios integrales con garantía de 30 días en todos nuestros trabajos.",
+    mission: "Brindar soluciones inteligentes e integrales en construcción, pintura y plomería, con profesionales capacitados, materiales de calidad y presupuestos sin cargo.",
+    vision: "Ser la empresa de referencia en soluciones integrales para el hogar y comercio en Buenos Aires, reconocida por nuestros 30 años de experiencia y la satisfacción de nuestros clientes.",
     values: [
-      { title: "Profesionalismo", desc: "Cada trabajo es realizado por especialistas capacitados en su área.", icon: "star" },
-      { title: "Compromiso", desc: "Cumplimos con lo pactado en tiempo, forma y calidad.", icon: "shield" },
-      { title: "Transparencia", desc: "Presupuestos claros y detallados, sin costos ocultos ni sorpresas.", icon: "check" }
+      { title: "Experiencia", desc: "Más de 30 años brindando soluciones inteligentes en el rubro de la construcción.", icon: "star" },
+      { title: "Garantía", desc: "30 días de garantía en mano de obra en todos nuestros trabajos.", icon: "shield" },
+      { title: "Transparencia", desc: "Presupuestos sin cargo, detallados y sin costos ocultos.", icon: "check" }
     ],
-    teamDescription: "Contamos con un equipo multidisciplinario de electricistas, pintores, carpinteros, durlockers, plomeros y albañiles con años de experiencia en cada especialidad."
+    teamDescription: "Contamos con un equipo multidisciplinario de albañiles, pintores, plomeros, durlockers e impermeabilizadores con más de 30 años de experiencia combinada."
   },
 
   // ─── CTA ───

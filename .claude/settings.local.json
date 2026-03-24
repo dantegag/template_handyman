@@ -5,7 +5,9 @@
       "Bash(where npx:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(ls *.html)"
+      "Bash(ls *.html)",
+      "WebFetch(domain:maps.app.goo.gl)",
+      "WebSearch"
     ]
   }
 }
