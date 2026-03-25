@@ -6,6 +6,8 @@
     <title></title>
     <meta name="description" content="">
     <script src="config.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="db.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <script>
@@ -267,20 +269,17 @@ function shimmerCard(content, extraClass) {
     '</div>';
 }
 
-function getData() {
-    const key = CONFIG.slug + '_cms';
-    try {
-        const stored = JSON.parse(localStorage.getItem(key) || 'null');
-        if (stored && stored.services) return stored;
-    } catch(e) {}
+async function getData() {
+    const stored = await DB.loadContent(CONFIG.slug);
+    if (stored && stored.services) return stored;
     return JSON.parse(JSON.stringify(CONFIG));
 }
 
 // ═══════════════════════════════════════
 // RENDER
 // ═══════════════════════════════════════
-function renderAll() {
-    const d = getData();
+async function renderAll() {
+    const d = await getData();
 
     // Dynamic body colors
     document.body.style.background = CONFIG.colors.bg;
@@ -487,11 +486,7 @@ function handleSubmit(e) {
     var entry = { date: new Date().toISOString() };
     var fields = ['nombre','telefono','email','servicio','zona','mensaje'];
     inputs.forEach(function(el, i) { if (fields[i]) entry[fields[i]] = el.value; });
-    var key = CONFIG.slug + '_consultas';
-    var list = [];
-    try { list = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
-    list.unshift(entry);
-    localStorage.setItem(key, JSON.stringify(list));
+    DB.addConsulta(CONFIG.slug, entry);
     form.style.display = 'none';
     document.getElementById('formSuccess').classList.remove('hidden');
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin – ReparMax</title>
     <script src="config.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="db.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <script>
@@ -302,23 +304,21 @@ const COLOR_HEX = {red:'#ef4444',purple:'#a855f7',orange:'#f97316',blue:'#3b82f6
 // ═══════════════════════════════════════
 let data;
 
-function loadData() {
-    try {
-        const s = JSON.parse(localStorage.getItem(CONFIG.slug + '_cms') || 'null');
-        if (s && s.services) { data = s; return; }
-    } catch(e) {}
+async function loadData() {
+    const stored = await DB.loadContent(CONFIG.slug);
+    if (stored && stored.services) { data = stored; return; }
     data = JSON.parse(JSON.stringify(CONFIG));
 }
 
-function saveAll() {
+async function saveAll() {
     collectFields();
-    localStorage.setItem(CONFIG.slug + '_cms', JSON.stringify(data));
+    await DB.saveContent(CONFIG.slug, data);
     showToast('Cambios guardados correctamente');
 }
 
-function resetAll() {
+async function resetAll() {
     if (!confirm('¿Resetear TODO al contenido original?')) return;
-    localStorage.removeItem(CONFIG.slug + '_cms');
+    await DB.deleteContent(CONFIG.slug);
     data = JSON.parse(JSON.stringify(CONFIG));
     renderAllFields();
     showToast('Contenido reseteado');
@@ -327,9 +327,9 @@ function resetAll() {
 // ═══════════════════════════════════════
 // LOGIN
 // ═══════════════════════════════════════
-function doLogin() {
+async function doLogin() {
     const pass = document.getElementById('loginPass').value;
-    const stored = localStorage.getItem(CONFIG.slug + '_admin_pass') || 'admin';
+    const stored = await DB.getPassword(CONFIG.slug);
     if (pass === stored) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminPanel').classList.remove('hidden');
@@ -710,12 +710,8 @@ document.addEventListener('keydown', e => { if ((e.ctrlKey||e.metaKey) && e.key=
 // ═══════════════════════════════════════
 // CONSULTAS
 // ═══════════════════════════════════════
-function getConsultas() {
-    try { return JSON.parse(localStorage.getItem(CONFIG.slug + '_consultas') || '[]'); } catch(e) { return []; }
-}
-
-function renderConsultas() {
-    var list = getConsultas();
+async function renderConsultas() {
+    var list = await DB.getConsultas(CONFIG.slug);
     var countEl = document.getElementById('consultasCount');
     var listEl = document.getElementById('consultasList');
     var emptyEl = document.getElementById('consultasEmpty');
@@ -727,7 +723,8 @@ function renderConsultas() {
     }
     emptyEl.classList.add('hidden');
     listEl.innerHTML = list.map(function(c, i) {
-        var d = new Date(c.date);
+        var dateStr = c.created_at || c.date;
+        var d = new Date(dateStr);
         var fecha = d.toLocaleDateString('es-AR') + ' ' + d.toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
         return '<div class="card">' +
             '<button class="del-btn" onclick="removeConsulta(' + i + ')">&times;</button>' +
@@ -746,30 +743,28 @@ function renderConsultas() {
     }).join('');
 }
 
-function removeConsulta(i) {
-    var list = getConsultas();
-    list.splice(i, 1);
-    localStorage.setItem(CONFIG.slug + '_consultas', JSON.stringify(list));
-    renderConsultas();
+async function removeConsulta(i) {
+    await DB.removeConsulta(CONFIG.slug, i);
+    await renderConsultas();
     showToast('Consulta eliminada');
 }
 
-function clearConsultas() {
+async function clearConsultas() {
     if (!confirm('¿Borrar todas las consultas?')) return;
-    localStorage.removeItem(CONFIG.slug + '_consultas');
-    renderConsultas();
+    await DB.clearConsultas(CONFIG.slug);
+    await renderConsultas();
     showToast('Consultas borradas');
 }
 
 // ═══════════════════════════════════════
 // PASSWORD CHANGE
 // ═══════════════════════════════════════
-function changePassword() {
+async function changePassword() {
     var oldPass = document.getElementById('set-oldpass').value;
     var newPass = document.getElementById('set-newpass').value;
     var newPass2 = document.getElementById('set-newpass2').value;
     var msgEl = document.getElementById('passMsg');
-    var stored = localStorage.getItem(CONFIG.slug + '_admin_pass') || 'admin';
+    var stored = await DB.getPassword(CONFIG.slug);
 
     msgEl.classList.remove('hidden');
     if (oldPass !== stored) {
@@ -787,7 +782,7 @@ function changePassword() {
         msgEl.textContent = 'Las contraseñas nuevas no coinciden.';
         return;
     }
-    localStorage.setItem(CONFIG.slug + '_admin_pass', newPass);
+    await DB.setPassword(CONFIG.slug, newPass);
     document.getElementById('set-oldpass').value = '';
     document.getElementById('set-newpass').value = '';
     document.getElementById('set-newpass2').value = '';
@@ -799,9 +794,11 @@ function changePassword() {
 // ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
-loadData();
-renderAllFields();
-renderConsultas();
+(async function init() {
+    await loadData();
+    renderAllFields();
+    renderConsultas();
+})();
 </script>
 </body>
 </html>
