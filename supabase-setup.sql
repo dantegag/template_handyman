@@ -37,19 +37,33 @@ alter table site_content enable row level security;
 alter table consultas enable row level security;
 alter table site_settings enable row level security;
 
--- 5. Public access policies (anon key can read/write)
--- site_content
+-- 5. Drop old policies if they exist, then recreate
+do $$ begin
+  -- site_content
+  drop policy if exists "Allow public read site_content" on site_content;
+  drop policy if exists "Allow public insert site_content" on site_content;
+  drop policy if exists "Allow public update site_content" on site_content;
+  drop policy if exists "Allow public delete site_content" on site_content;
+  -- consultas
+  drop policy if exists "Allow public read consultas" on consultas;
+  drop policy if exists "Allow public insert consultas" on consultas;
+  drop policy if exists "Allow public delete consultas" on consultas;
+  -- site_settings
+  drop policy if exists "Allow public read site_settings" on site_settings;
+  drop policy if exists "Allow public insert site_settings" on site_settings;
+  drop policy if exists "Allow public update site_settings" on site_settings;
+end $$;
+
+-- 6. Create public access policies
 create policy "Allow public read site_content" on site_content for select using (true);
 create policy "Allow public insert site_content" on site_content for insert with check (true);
 create policy "Allow public update site_content" on site_content for update using (true);
 create policy "Allow public delete site_content" on site_content for delete using (true);
 
--- consultas
 create policy "Allow public read consultas" on consultas for select using (true);
 create policy "Allow public insert consultas" on consultas for insert with check (true);
 create policy "Allow public delete consultas" on consultas for delete using (true);
 
--- site_settings
 create policy "Allow public read site_settings" on site_settings for select using (true);
 create policy "Allow public insert site_settings" on site_settings for insert with check (true);
 create policy "Allow public update site_settings" on site_settings for update using (true);

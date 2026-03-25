@@ -4,8 +4,8 @@
 // If SUPABASE_URL and SUPABASE_KEY are set, uses Supabase.
 // Otherwise, falls back to localStorage silently.
 
-const SUPABASE_URL = '';   // ← Set your Supabase project URL
-const SUPABASE_KEY = '';   // ← Set your Supabase anon (public) key
+const SUPABASE_URL = 'https://lnzqfgxojsvxzbgmnirt.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxuenFmZ3hvanN2eHpiZ21uaXJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDgxMTAsImV4cCI6MjA4OTk4NDExMH0.Frr0ZTlLcG_hVbyczZciAvkvpIQ3ArEpB7TrwYt3Oak';
 
 let _sb = null;
 function _initSB() {
