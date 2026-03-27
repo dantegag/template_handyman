@@ -16,6 +16,12 @@ function _initSB() {
   return _sb;
 }
 
+// Hash helper (SHA-256 via Web Crypto)
+async function hashPass(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 const DB = {
 
   // ─── CMS Content ───
@@ -133,7 +139,7 @@ const DB = {
   },
 
   // ─── Admin Password ───
-  async getPassword(slug) {
+  async getPasswordHash(slug) {
     const sb = _initSB();
     if (sb) {
       try {
@@ -141,20 +147,41 @@ const DB = {
         if (!error && data) return data.admin_pass;
       } catch(e) { console.warn('Supabase getPassword error:', e); }
     }
-    return localStorage.getItem(slug + '_admin_pass') || 'admin';
+    var stored = localStorage.getItem(slug + '_admin_pass');
+    if (!stored) {
+      // First time: hash the default password and store it
+      stored = await hashPass('admin');
+      localStorage.setItem(slug + '_admin_pass', stored);
+    }
+    return stored;
   },
 
   async setPassword(slug, newPass) {
-    localStorage.setItem(slug + '_admin_pass', newPass);
+    var hashed = await hashPass(newPass);
+    localStorage.setItem(slug + '_admin_pass', hashed);
     const sb = _initSB();
     if (sb) {
       try {
         await sb.from('site_settings').upsert({
           slug: slug,
-          admin_pass: newPass,
+          admin_pass: hashed,
           updated_at: new Date().toISOString()
         }, { onConflict: 'slug' });
       } catch(e) { console.warn('Supabase setPassword error:', e); }
     }
+  },
+
+  async checkPassword(slug, inputPass) {
+    var hash = await hashPass(inputPass);
+    var stored = await this.getPasswordHash(slug);
+    // Migration: if stored is plain text (not a 64-char hex), rehash it
+    if (stored.length !== 64) {
+      if (inputPass === stored) {
+        await this.setPassword(slug, inputPass); // migrate to hash
+        return true;
+      }
+      return false;
+    }
+    return hash === stored;
   }
 };

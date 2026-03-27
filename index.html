@@ -481,6 +481,13 @@ function toggleFaq(btn) {
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 function handleSubmit(e) {
     e.preventDefault();
+    var now = Date.now() / 1000;
+    var wait = Math.ceil(_RATE_LIMIT - (now - _lastSubmit));
+    if (_lastSubmit && wait > 0) {
+        alert('Esperá ' + wait + ' segundos antes de enviar otra consulta.');
+        return;
+    }
+    _lastSubmit = now;
     var form = document.getElementById('contactForm');
     var inputs = form.querySelectorAll('input, textarea, select');
     var entry = { date: new Date().toISOString() };
@@ -522,6 +529,29 @@ function hexToRgb(hex) {
     new IntersectionObserver(e=>{isVisible=e[0].isIntersecting;if(isVisible&&!rafId)rafId=requestAnimationFrame(draw);},{threshold:0}).observe(container);
     addEventListener('resize',resize);resize();rafId=requestAnimationFrame(draw);
 })();
+
+// ═══════════════════════════════════════
+// WHATSAPP FLOATING BUTTON
+// ═══════════════════════════════════════
+(function() {
+    var num = (CONFIG.contact && CONFIG.contact.whatsapp && CONFIG.contact.whatsapp.num) || '';
+    if (!num) return;
+    var clean = num.replace(/[^0-9]/g, '');
+    var btn = document.createElement('a');
+    btn.href = 'https://wa.me/' + clean;
+    btn.target = '_blank';
+    btn.rel = 'noopener';
+    btn.setAttribute('aria-label', 'Chat por WhatsApp');
+    btn.className = 'fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25d366] hover:bg-[#20bd5a] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110';
+    btn.innerHTML = '<svg viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16.004 2.003C8.274 2.003 2.003 8.274 2.003 16.004c0 2.474.644 4.888 1.87 7.014L2 30l7.2-1.887A13.94 13.94 0 0016.004 30c7.73 0 13.997-6.27 13.997-13.997S23.733 2.003 16.004 2.003zm0 25.594a11.58 11.58 0 01-5.9-1.613l-.424-.252-4.388 1.15 1.17-4.276-.276-.44a11.56 11.56 0 01-1.773-6.163c0-6.403 5.21-11.61 11.613-11.61 6.403 0 11.614 5.21 11.614 11.614 0 6.403-5.213 11.59-11.636 11.59zm6.368-8.69c-.35-.174-2.07-1.02-2.39-1.137-.32-.117-.554-.175-.787.175-.233.35-.903 1.137-1.107 1.37-.204.234-.408.263-.758.088-.35-.175-1.477-.544-2.813-1.735-1.04-.926-1.742-2.07-1.946-2.42-.204-.35-.022-.538.153-.712.157-.156.35-.408.525-.612.175-.204.233-.35.35-.583.117-.233.058-.437-.03-.612-.087-.175-.787-1.898-1.078-2.598-.284-.682-.573-.59-.787-.6-.204-.01-.437-.012-.67-.012-.234 0-.613.088-.934.437-.32.35-1.224 1.196-1.224 2.916 0 1.72 1.253 3.382 1.428 3.615.175.233 2.466 3.764 5.975 5.278.835.36 1.487.576 1.995.737.838.266 1.602.23 2.205.14.673-.1 2.07-.847 2.362-1.664.292-.818.292-1.52.204-1.665-.088-.146-.32-.233-.67-.408z"/></svg>';
+    document.body.appendChild(btn);
+})();
+
+// ═══════════════════════════════════════
+// RATE LIMIT CONTACT FORM
+// ═══════════════════════════════════════
+var _lastSubmit = 0;
+var _RATE_LIMIT = 60; // seconds
 
 // Init
 renderAll();

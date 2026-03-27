@@ -329,8 +329,8 @@ async function resetAll() {
 // ═══════════════════════════════════════
 async function doLogin() {
     const pass = document.getElementById('loginPass').value;
-    const stored = await DB.getPassword(CONFIG.slug);
-    if (pass === stored) {
+    const ok = await DB.checkPassword(CONFIG.slug, pass);
+    if (ok) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminPanel').classList.remove('hidden');
         sessionStorage.setItem(CONFIG.slug + '_logged', '1');
@@ -764,10 +764,10 @@ async function changePassword() {
     var newPass = document.getElementById('set-newpass').value;
     var newPass2 = document.getElementById('set-newpass2').value;
     var msgEl = document.getElementById('passMsg');
-    var stored = await DB.getPassword(CONFIG.slug);
+    var oldOk = await DB.checkPassword(CONFIG.slug, oldPass);
 
     msgEl.classList.remove('hidden');
-    if (oldPass !== stored) {
+    if (!oldOk) {
         msgEl.className = 'text-xs mt-3 text-red-400';
         msgEl.textContent = 'La contraseña actual es incorrecta.';
         return;
